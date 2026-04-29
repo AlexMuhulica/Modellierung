@@ -17,15 +17,60 @@
 % Möchtest du eine Aufgabe in der Nummerierung überspringen, schreibe vor der Aufgabe: \stepcounter{exnum}
 % Möchtest du die Nummer einer Aufgabe auf eine beliebige Zahl x setzen, schreibe vor der Aufgabe: \setcounter{exnum}{x}
 
-% Aufgabe
-    \exercise{Aufgabe}
+    \exercise{1.1: Interpretieren von Entity-Relationship-Diagrammen}
 
-% Unteraufgabe
-    \subsection*{Unteraufgabe}
+    \subsection*{a) Interpretation und Diskussion der Beispiele}
 
-% Unterunteraufgabe
-    \paragraph{Unterunteraufgabe}
+    \paragraph*{Beispiel 1:}
+    \newline \textbf{Interpretation:} Es wird eine Entitätsmenge \texttt{Schule} definiert, die drei Ausprägungen (Schulen) (AEG, ALG, THG) enthält. Die Schule \("\)AEG\("\) hat den Namen \("\)Albert-Einstein-Gymnasium\("\) und befindet sich im Ort Böblingen. Die Schule \("\)ALG\("\) hat ebenfalls den Namen \("\)Albert-Einstein-Gymnasium\("\), und befindet sich im Ort Esslingen. Die Schule \("\)THG\("\) hat den Namen \("\)Theodor-Heuss-Gymnasium\("\) und befindet sich im Ort Esslingen.
+    \newline\textbf{Diskussion:} Dieses Beispiel entspricht \textbf{nicht} dem modellierten Zusammenhang. Im Diagramm ist das Attribut \texttt{Name} der Entitätsmenge \texttt{Schule} durchgängig unterstrichen und dient somit als Primärschlüssel. Ein Primärschlüssel muss zur eindeutigen Identifikation innerhalb der Entitätsmenge zwingend einmalig sein, was durch die doppelte Vergabe des Namens verletzt wird.
 
+    \paragraph*{Beispiel 2:}
+    \newline \textbf{Interpretation:} Es wird eine Entitätsmenge \texttt{Schüler} mit den Entitäten (Schülern) A, B, C und D definiert. Der erste Schüler hat den Namen \("\)Andreas\("\), der zweite Schüler den Namen \("\)Bettina\("\), der dritte Schüler den Namen \("\)Christian\("\), für den vierten Schüler wird kein Name angegeben.
+    \newline\textbf{Diskussion:} Dieses Beispiel entspricht \textbf{nicht} dem modellierten Zusammenhang. Das Attribut \texttt{Name} ist der Primärschlüssel für die Entität \texttt{Schüler}. Ein Primärschlüssel darf für keine existierende Entität fehlen (er darf nicht den Wert NULL haben).
+
+    \paragraph*{Beispiel 3:}
+    \newline\textbf{Interpretation:} Es wird eine Entitätsmenge \texttt{Schule} definiert, die zwei Ausprägungen (Schulen) (AEG und THG) enthält. Die Schule \("\)AEG\("\) hat den Namen \("\)Albert-Einstein-Gymnasium\("\) und befindet sich im Ort Böblingen. Die Schule \("\)THG\("\) hat den Namen \("\)Theodor-Heuss-Gymnasium\("\) und befindet sich im Ort Esslingen. Schließlich wird eine Entitätsmenge \texttt{Schüler} mit den Entitäten (Schülern) A, B, C und D definiert. Der erste Schüler hat den Namen \("\)Andreas\("\), der zweite Schüler den Namen \("\)Bettina\("\), der dritte Schüler den Namen \("\)Christian\("\), der vierte Schüler den Namen \("\)Dagmar\("\). Es wird eine Relationship-Menge \texttt{Besucht} aufgestellt: Andreas besucht die Schule AEG, Bettina besucht die Schule AEG, Andreas besucht die Schule THG und Christian besucht die Schule THG.
+    \newline\textbf{Diskussion:} Dieses Beispiel entspricht aus zwei Gründen \textbf{nicht} dem Diagramm:
+    \begin{enumerate}
+        \item \textbf{Verletzung der Kardinalität:} Die n:1-Beziehung gibt vor, dass ein Schüler maximal eine einzige Schule besuchen darf. Die Beziehungsmenge ordnet Schüler A jedoch zwei verschiedenen Schulen zu.
+        \item \textbf{Fehlendes Beziehungsattribut:} Das ER-Diagramm weist der Beziehung \texttt{besucht} das Attribut \texttt{seit} zu. Jedes Tupel in der Beziehungsmenge müsste daher auch einen Wert für dieses Attribut enthalten (z.\,B. \texttt{(AEG, A, 2020)}). Dies fehlt hier.
+    \end{enumerate}
+    \newpage
+    \subsection*{b) Zusammenhang zwischen Rektorin und Schule}
+
+    \begin{itemize}
+        \item \textbf{Falsch:} \textit{\("\)Für jede Schule ist immer auch eine Rektorin erfasst.\("\)} \\
+        \textbf{Begründung:} Die einfache Verbindungslinie zwischen \texttt{Schule} und \texttt{leitet} bedeutet, dass die Entität eine Beziehung eingehen kann, aber nicht muss. Es ist also möglich, dass eine Schule derzeit keine Rektorin hat.
+
+        \item \textbf{Falsch:} \textit{\("\)Eine Schule kann mehrere Rektorinnen haben.\("\)} \\
+        \textbf{Begründung:} Die Angabe der Kardinalität \("\)1\("\) an der Entität \texttt{Rektorin} legt fest, dass einer Schule maximal eine Rektorin zugeordnet sein darf.
+
+        \item \textbf{Korrekt:} \textit{\("\)Eine Schule kann maximal eine Rektorin haben.\("\)} \\
+        \textbf{Begründung:} Dies ist die exakte textliche Übersetzung der 1-Kardinalität auf Seiten der Rektorin.
+
+        \item \textbf{Korrekt:} \textit{\("\)Es kann eine Rektorin geben, die (derzeit) keine Schule leitet.\("\)} \\
+        \textbf{Begründung:} Auch hier drückt die einfache Linie auf Seiten der \texttt{Rektorin} aus, dass die Entität eine Beziehung eingehen kann, aber nicht muss. Es ist also möglich, dass eine Rektorin derzeit keine Schule leitet.
+    \end{itemize}
+
+    \subsection*{c) Zusammenhang zwischen Schulgebäude und Klassenzimmer}
+
+    \begin{itemize}
+        \item \textbf{Falsch:} \textit{\("\)In jedem Schulgebäude gibt es genau n Klassenzimmer.\("\)} \\
+        \textbf{Begründung:} Der Buchstabe \("\)n\("\) in der Kardinalität ist eine Variable für \("\)beliebig viele\("\) (meist $\geq 0$ oder $\geq 1$) und repräsentiert keine feste, exakte Konstante $n$.
+
+        \item \textbf{Korrekt:} \textit{\("\)Pro Schulgebäude sind meist mehrere Klassenzimmer vorgesehen.\("\)} \\
+        \textbf{Begründung:} Dies umschreibt umgangssprachlich korrekt die Bedeutung der 1:n-Beziehung zwischen Schulgebäude und Klassenzimmer.
+
+        \item \textbf{Falsch:} \textit{\("\)Alle Klassenzimmer aller Schulen sind durch die RaumNr eindeutig identifiziert...\("\)} \\
+        \textbf{Begründung:} Das Attribut \texttt{RaumNr} ist nur gestrichelt unterstrichen. Es handelt sich um einen partiellen Schlüssel (Discriminator), der das Klassenzimmer nur \textit{innerhalb} eines bestimmten Gebäudes eindeutig identifiziert. Raum 1 kann es in Gebäude A und B geben.
+
+        \item \textbf{Korrekt:} \textit{\("\)Die Kombination aus GebäudeNr und RaumNr ergibt einen Primärschlüssel für die Klassenzimmer.\("\)} \\
+        \textbf{Begründung:} \texttt{Klassenzimmer} ist im Diagramm als schwache Entität (Doppelrahmen) modelliert. Schwache Entitäten benötigen zur Identifikation zwingend den Primärschlüssel ihrer übergeordneten, starken Entität (hier \texttt{GebäudeNr}) in Kombination mit ihrem eigenen partiellen Schlüssel (\texttt{RaumNr}).
+
+        \item \textbf{Falsch:} \textit{\("\)Es können auch Klassenzimmer registriert sein, die keinem Schulgebäude zugeordnet sind.\("\)} \\
+        \textbf{Begründung:} Schwache Entitäten sind per Definition existenzabhängig von ihrer stark identifizierenden Entität. Ohne die Zuordnung zu einem Schulgebäude kann das Klassenzimmer im System nicht existieren.
+    \end{itemize}
 
 
 \end{document}
