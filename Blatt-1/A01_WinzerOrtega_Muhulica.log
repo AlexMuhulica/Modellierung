@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  29 APR 2026 23:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  29 APR 2026 23:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1244,6 +1244,23 @@ Overfull \hbox (26.18338pt too wide) in paragraph at lines 233--235
 [4]
 
 [5]
+
+[6]
+<A1.3a).png, id=63, 1473.505pt x 243.91125pt>
+File: A1.3a).png Graphic file (type png)
+<use A1.3a).png>
+Package pdftex.def Info: A1.3a).png  used on input line 374.
+(pdftex.def)             Requested size: 483.69687pt x 80.06667pt.
+<A1.3b).png, id=65, 1508.63625pt x 232.87pt>
+File: A1.3b).png Graphic file (type png)
+<use A1.3b).png>
+Package pdftex.def Info: A1.3b).png  used on input line 376.
+(pdftex.def)             Requested size: 483.69687pt x 74.66205pt.
+
+
+[7 </Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A1.3a).
+png> </Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A1.3b
+).png>]
 (/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A01_Winzer
 Ortega_Muhulica.aux)
  ***********
@@ -1255,10 +1272,10 @@ ed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 31493 strings out of 473579
- 631111 string characters out of 5725712
+ 31521 strings out of 473579
+ 631515 string characters out of 5725712
  1192617 words of memory out of 5000000
- 53851 multiletter control sequences out of 15000+600000
+ 53873 multiletter control sequences out of 15000+600000
  611368 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,107p,10920b,669s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1273,10 +1290,10 @@ f-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024basic/texmf-d
 ist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024basic/texmf-dist/f
 onts/type1/public/lm/lmtt12.pfb>
 Output written on /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/B
-latt-1/A01_WinzerOrtega_Muhulica.pdf (5 pages, 237609 bytes).
+latt-1/A01_WinzerOrtega_Muhulica.pdf (7 pages, 319257 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
- 24 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 135 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
+ 30 named destinations out of 1000 (max. 500000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
