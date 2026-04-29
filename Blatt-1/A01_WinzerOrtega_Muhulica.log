@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  29 APR 2026 14:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  29 APR 2026 23:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -943,7 +943,27 @@ FormatAndHeader.tex
 \c@sheetnr=\count335
 \c@exnum=\count336
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 15
+(/usr/local/texlive/2024basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2024basic/texmf-dist/tex/generic/pgf/libraries/shapes/pgfli
+braryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/local/texlive/2024basic/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box99
+\UL@hyphenbox=\box100
+\UL@skip=\skip92
+\UL@hook=\toks46
+\UL@height=\dimen283
+\UL@pe=\count337
+\UL@pixel=\dimen284
+\ULC@box=\box101
+Package: ulem 2019/11/18
+\ULdepth=\dimen285
+)
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 17
 .
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/t1lmr.fd
@@ -953,38 +973,38 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 Ortega_Muhulica.aux)
 \openout1 = `A01_WinzerOrtega_Muhulica.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count337
-\scratchdimen=\dimen283
-\scratchbox=\box99
-\nofMPsegments=\count338
-\nofMParguments=\count339
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count340
-\MPscratchDim=\dimen284
-\MPnumerator=\count341
-\makeMPintoPDFobject=\count342
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count338
+\scratchdimen=\dimen286
+\scratchbox=\box102
+\nofMPsegments=\count339
+\nofMParguments=\count340
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count341
+\MPscratchDim=\dimen287
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
+\everyMPtoPDFconversion=\toks48
 )
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.s
 ty
@@ -1003,9 +1023,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count343
-Package tocbasic Info: setting babel extension for `lol' on input line 15.
-\scr@dte@lstlisting@maxnumwidth=\skip92
+\c@lstlisting=\count344
+Package tocbasic Info: setting babel extension for `lol' on input line 17.
+\scr@dte@lstlisting@maxnumwidth=\skip93
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1041,7 +1061,7 @@ Package tocbasic Info: setting babel extension for `lol' on input line 15.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 15.
+Package hyperref Info: Link coloring OFF on input line 17.
 
 (/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A01_Winzer
 Ortega_Muhulica.out)
@@ -1057,7 +1077,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 15.
+(scrartcl)           before \begin{document} on input line 17.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
@@ -1065,23 +1085,23 @@ Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
 )
-\BKM@id=\count344
+\BKM@id=\count345
 ))
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-0.
+2.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A01_WinzerO
-rtega_Muhulica.tex:25: LaTeX Error: There's no line here to end.
+rtega_Muhulica.tex:27: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.25     \newline
+l.27     \newline
                   \textbf{Interpretation:} Es wird eine EntitÃ¤tsmenge \text...
 
 Your command was ignored.
@@ -1089,47 +1109,47 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-5.
+7.
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-5.
+7.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-5.
+7.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-25.
+27.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-25.
+27.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 25.
+(Font)              <12> on input line 27.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 25.
+(Font)              <8> on input line 27.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 25.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
+(Font)              <6> on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
 
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
 
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1137,13 +1157,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A01_WinzerO
-rtega_Muhulica.tex:29: LaTeX Error: There's no line here to end.
+rtega_Muhulica.tex:31: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.29     \newline
+l.31     \newline
                   \textbf{Interpretation:} Es wird eine EntitÃ¤tsmenge \text...
 
 Your command was ignored.
@@ -1152,13 +1172,13 @@ or  <return>  to continue without it.
 
 
 /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A01_WinzerO
-rtega_Muhulica.tex:33: LaTeX Error: There's no line here to end.
+rtega_Muhulica.tex:35: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.33     \newline
+l.35     \newline
                  \textbf{Interpretation:} Es wird eine EntitÃ¤tsmenge \textt...
 
 Your command was ignored.
@@ -1172,28 +1192,58 @@ usr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
 
 {/usr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
-3.
+5.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (12.8097pt too wide) in paragraph at lines 62--64
+Overfull \hbox (12.8097pt too wide) in paragraph at lines 64--66
 \T1/lmr/bx/n/12 Begründung: \T1/lmr/m/n/12 Dies um-schreibt um-gangs-sprach-lic
 h kor-rekt die Be-deu-tung der 1:n-Beziehung
  []
 
 
-Overfull \hbox (9.87086pt too wide) in paragraph at lines 65--67
+Overfull \hbox (9.87086pt too wide) in paragraph at lines 67--69
 []\T1/lmr/bx/n/12 Falsch: $\OT1/lmr/m/n/12 "$\T1/lmr/m/it/12 Alle Klas-sen-zim-
 mer al-ler Schu-len sind durch die Raum-Nr ein-deu-tig identifiziert...$\OT1/lm
 r/m/n/12 "$ 
  []
 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 201.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 201.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 201.
 
 
 [2{/usr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/
 local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local
 /texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
+
+[3]
+Overfull \hbox (13.03387pt too wide) in paragraph at lines 223--225
+[]\T1/lmr/bx/n/12 Einfache No-ta-ti-on (Re-mo-te): \T1/lmtt/m/n/12 Buchtitel --
+-(1)--- gehört_zu ---(n)--- Buchexemplar 
+ []
+
+
+Overfull \hbox (44.70839pt too wide) in paragraph at lines 225--227
+[]\T1/lmr/bx/n/12 Min/Max-Notation (Lo-cal): \T1/lmtt/m/n/12 Buchtitel ---[1, n
+]--- gehört_zu ---[1, 1]--- Buchexemplar 
+ []
+
+
+Overfull \hbox (26.18338pt too wide) in paragraph at lines 233--235
+[]\T1/lmr/bx/n/12 Min/Max-Notation (Lo-cal): \T1/lmtt/m/n/12 Nutzer ---[0, 15]-
+-- Ausleihe ---[0, 1]--- Buchexemplar 
+ []
+
+
+
+[4]
+
+[5]
 (/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-1/A01_Winzer
 Ortega_Muhulica.aux)
  ***********
@@ -1205,26 +1255,28 @@ ed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30386 strings out of 473579
- 607870 string characters out of 5725712
- 1166437 words of memory out of 5000000
- 52778 multiletter control sequences out of 15000+600000
- 596461 words of font info for 64 fonts, out of 8000000 for 9000
+ 31493 strings out of 473579
+ 631111 string characters out of 5725712
+ 1192617 words of memory out of 5000000
+ 53851 multiletter control sequences out of 15000+600000
+ 611368 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,19n,107p,10920b,460s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,20n,107p,10920b,669s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></u
 sr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/lo
 cal/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/te
 xlive/2024basic/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive
 /2024basic/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2024
-basic/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024bas
-ic/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024basic/te
-xmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+basic/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2024basic
+/texmf-dist/fonts/type1/public/lm/lmss12.pfb></usr/local/texlive/2024basic/texm
+f-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024basic/texmf-d
+ist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024basic/texmf-dist/f
+onts/type1/public/lm/lmtt12.pfb>
 Output written on /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/B
-latt-1/A01_WinzerOrtega_Muhulica.pdf (2 pages, 176186 bytes).
+latt-1/A01_WinzerOrtega_Muhulica.pdf (5 pages, 237609 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
+ 24 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

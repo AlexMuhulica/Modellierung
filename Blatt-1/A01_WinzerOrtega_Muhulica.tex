@@ -3,6 +3,8 @@
 
 \input{../styles/Packages}
 \input{../styles/FormatAndHeader}
+\usetikzlibrary{shapes.geometric}
+\usepackage[normalem]{ulem}
 
 
 
@@ -17,7 +19,7 @@
 % Möchtest du eine Aufgabe in der Nummerierung überspringen, schreibe vor der Aufgabe: \stepcounter{exnum}
 % Möchtest du die Nummer einer Aufgabe auf eine beliebige Zahl x setzen, schreibe vor der Aufgabe: \setcounter{exnum}{x}
 
-    \exercise{1.1: Interpretieren von Entity-Relationship-Diagrammen}
+    \exercise{Übung 1.1: Interpretieren von Entity-Relationship-Diagrammen}
 
     \subsection*{a) Interpretation und Diskussion der Beispiele}
 
@@ -72,5 +74,286 @@
         \textbf{Begründung:} Schwache Entitäten sind per Definition existenzabhängig von ihrer stark identifizierenden Entität. Ohne die Zuordnung zu einem Schulgebäude kann das Klassenzimmer im System nicht existieren.
     \end{itemize}
 
+    \exercise{Übung 1.2: Aufstellen von Entity-Relationship-Diagrammen}
 
+    \subsection*{a) -- g) ER-Diagramm}
+
+% ACHTUNG: Für \dashuline{Nummer} (gestrichelte Unterstreichung) musst du
+% \usepackage[normalem]{ulem} in deiner Präambel laden!
+
+% Die resizebox sorgt dafür, dass das Diagramm immer genau auf die Seitenbreite passt
+    \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}[
+            node distance=1.2cm and 1.5cm,
+            every node/.style={font=\sffamily},
+            entity/.style={rectangle, draw, thick, minimum width=2.5cm, minimum height=1cm, align=center},
+            weak entity/.style={rectangle, draw, thick, double, double distance=1.5pt, minimum width=2.5cm, minimum height=1cm, align=center},
+            relationship/.style={diamond, draw, thick, align=center, inner sep=4pt},
+            attribute/.style={ellipse, draw, align=center, inner sep=2pt, font=\sffamily\footnotesize},
+            multi attribute/.style={ellipse, draw, double, double distance=1.5pt, align=center, inner sep=2pt, font=\sffamily\footnotesize}
+        ]
+
+% -------------------------
+% 1. Entitäten & Beziehungen (Zentraler vertikaler Aufbau)
+% -------------------------
+            \node[entity] (buchtitel) {Buchtitel};
+
+% Oben Links: Autor
+            \node[relationship] (schreibt) [above left=1cm and 0.5cm of buchtitel] {schreibt};
+            \node[entity] (autor) [left=1cm of schreibt] {Autor};
+
+% Oben Rechts: Verlag
+            \node[relationship] (verlegt) [above right=1cm and 0.5cm of buchtitel] {verlegt};
+            \node[entity] (verlag) [right=1cm of verlegt] {Verlag};
+
+% Unten: Buchexemplar (Schwache Entität)
+            \node[relationship] (gehoertzu) [below=1.2cm of buchtitel] {gehört\_zu};
+            \node[weak entity] (exemplar) [below=1.2cm of gehoertzu] {Buchexemplar};
+
+% Ganz Unten: Ausleihe (Ternär)
+            \node[relationship] (ausleihe) [below=1.5cm of exemplar] {Ausleihe};
+% Abstand NOCHMALS vergrößert (auf 3.5cm)
+            \node[entity] (nutzer) [left=3.5cm of ausleihe] {Nutzer};
+            \node[entity] (bib) [right=3.5cm of ausleihe] {Bibliothekar};
+
+% -------------------------
+% 2. Kanten & Kardinalitäten
+% -------------------------
+            \draw[thick] (autor) -- node[above] {m} (schreibt);
+            \draw[thick] (schreibt) -- node[above] {n} (buchtitel);
+
+            \draw[thick] (verlag) -- node[above] {1} (verlegt);
+            \draw[thick] (verlegt) -- node[above] {n} (buchtitel);
+
+            \draw[thick] (buchtitel) -- node[right] {1} (gehoertzu);
+% Pfeil (->) zur schwachen Entität
+            \draw[thick, ->] (gehoertzu) -- node[right] {n} (exemplar);
+
+            \draw[thick] (exemplar) -- node[right] {n} (ausleihe);
+            \draw[thick] (nutzer) -- node[above, sloped] {1} (ausleihe);
+            \draw[thick] (bib) -- node[above, sloped] {1} (ausleihe);
+
+% -------------------------
+% 3. Attribute (als Ovale)
+% -------------------------
+% Attribute: Autor
+            \node[attribute] (a_pers) [above=0.6cm of autor] {\underline{PersAuswNr}};
+            \node[attribute] (a_vor) [left=0.6cm of autor] {Vorname};
+            \node[attribute] (a_nach) [below left=0.6cm and 0.2cm of autor] {Nachname};
+            \node[attribute] (a_geb) [below right=0.6cm and 0.2cm of autor] {Geburtsdatum};
+            \node[attribute] (a_pseudo) [above left=0.6cm and 0.2cm of autor] {Pseudonym};
+
+            \draw (autor) -- (a_pers); \draw (autor) -- (a_vor); \draw (autor) -- (a_nach);
+            \draw (autor) -- (a_geb); \draw (autor) -- (a_pseudo);
+
+% Attribute: Verlag
+            \node[attribute] (v_name) [above=0.6cm of verlag] {\underline{Name}};
+            \node[attribute] (v_ort) [right=0.6cm of verlag] {Verlagsort};
+
+            \draw (verlag) -- (v_name); \draw (verlag) -- (v_ort);
+
+% Attribute: Buchtitel
+            \node[attribute] (b_isbn) [left=1cm of buchtitel] {\underline{ISBN}};
+            \node[attribute] (b_sig) [right=1cm of buchtitel] {Signatur};
+            \node[attribute] (b_titel) [above=0.8cm of buchtitel] {Titel};
+            \node[attribute] (b_seite) [below left=0.6cm and 1cm of buchtitel] {Seitenzahl};
+            \node[attribute] (b_jahr) [below right=0.6cm and 1cm of buchtitel] {Jahr};
+
+            \draw (buchtitel) -- (b_isbn); \draw (buchtitel) -- (b_sig); \draw (buchtitel) -- (b_titel);
+            \draw (buchtitel) -- (b_seite); \draw (buchtitel) -- (b_jahr);
+
+% Attribute: Buchexemplar (mit gestrichelter Linie für Partiellen Schlüssel)
+            \node[attribute] (e_nr) [left=1cm of exemplar] {\dashuline{Nummer}};
+            \node[attribute] (e_stand) [right=1cm of exemplar] {Standort};
+
+            \draw (exemplar) -- (e_nr); \draw (exemplar) -- (e_stand);
+
+% Attribute: Nutzer (mit zusammengesetzter Adresse)
+            \node[attribute] (n_pers) [above left=0.6cm and 0.2cm of nutzer] {\underline{PersAuswNr}};
+            \node[attribute] (n_vor) [left=0.6cm of nutzer] {Vorname};
+            \node[attribute] (n_nach) [below left=0.6cm and 0.2cm of nutzer] {Nachname};
+            \node[attribute] (n_geb) [below=0.6cm of nutzer] {Geburtsdatum};
+            \node[attribute] (n_adr) [below right=0.6cm and 0.2cm of nutzer] {Adresse};
+
+            \node[attribute] (n_str) [below left=0.6cm and 0.2cm of n_adr] {Straße};
+            \node[attribute] (n_ort) [below=0.6cm of n_adr] {Ort};
+            \node[attribute] (n_plz) [below right=0.6cm and 0.2cm of n_adr] {PLZ};
+
+            \draw (nutzer) -- (n_pers); \draw (nutzer) -- (n_vor); \draw (nutzer) -- (n_nach);
+            \draw (nutzer) -- (n_geb); \draw (nutzer) -- (n_adr);
+            \draw (n_adr) -- (n_str); \draw (n_adr) -- (n_ort); \draw (n_adr) -- (n_plz);
+
+% Attribute: Bibliothekar
+            \node[attribute] (bib_pers) [above right=0.6cm and 0.2cm of bib] {\underline{PersAuswNr}};
+            \node[attribute] (bib_vor) [right=0.6cm of bib] {Vorname};
+            \node[attribute] (bib_nach) [below right=0.6cm and 0.2cm of bib] {Nachname};
+            \node[attribute] (bib_geb) [below=0.6cm of bib] {Geburtsdatum};
+            \node[attribute] (bib_gehalt) [below left=0.6cm and 0.2cm of bib] {Gehalt};
+
+            \draw (bib) -- (bib_pers); \draw (bib) -- (bib_vor); \draw (bib) -- (bib_nach);
+            \draw (bib) -- (bib_geb); \draw (bib) -- (bib_gehalt);
+
+% Attribute: Ausleihe
+            \node[attribute] (aus_datum) [below=1cm of ausleihe] {Ausleihdatum};
+            \draw (ausleihe) -- (aus_datum);
+
+        \end{tikzpicture}
+    }
+
+    \subsection*{h) Kardinalitätsangaben (Einfache Notation vs. Min/Max-Notation)}
+
+    \paragraph*{Einschränkung 1: Zu jedem Titel mind. 1, max. 10 Autoren}
+    \begin{itemize}
+        \item \textbf{Einfache Notation (Remote):} \texttt{Buchtitel ---(n)--- schreibt ---(m)--- Autor} \\
+        Das \("\)m\("\) steht auf der fernen Seite beim Autor und bedeutet \("\)ein Buch wird von m Autoren geschrieben\("\). Das genaue Intervall (1 bis 10) lässt sich so nicht modellieren.
+        \item \textbf{Min/Max-Notation (Local):} \texttt{Buchtitel---[1, 10]--- schreibt ---[1, n]--- Autor} \\
+        Die Kardinalität \texttt{[1, 10]} steht hier direkt am Buchtitel, da ein Titel an minimal 1 und maximal 10 Schreib-Vorgängen teilnimmt. Am Autor steht \texttt{[1, n]}, da ein Autor (um erfasst zu werden) mindestens 1 Buch geschrieben haben muss.
+    \end{itemize}
+
+    \paragraph*{Einschränkung 2: Existenzabhängigkeit des Verlags}
+    \begin{itemize}
+        \item \textbf{Einfache Notation (Remote):} \texttt{Buchtitel ---(n)--- verlegt ---(1)--- Verlag} \\
+        Das \("1"\) beim Verlag drückt aus, dass ein Buch exakt einen Verlag hat. Dass der Verlag aber ohne Buch nicht existieren darf, ist hier nicht ablesbar.
+        \item \textbf{Min/Max-Notation (Local):} \texttt{Buchtitel ---[1, 1]--- verlegt ---[1, n]--- Verlag} \\
+        Das \texttt{[1, n]} am Verlag erzwingt die totale Teilnahme (er muss mind. 1 Buch verlegt haben). Am Buchtitel steht  \texttt{[1, 1]} (genau 1 Verlag).
+    \end{itemize}
+
+    \paragraph*{Einschränkung 3: Buch und Exemplar (Mindestens 1 Exemplar)}
+    \begin{itemize}
+        \item \textbf{Einfache Notation (Remote):} \texttt{Buchtitel ---(1)--- gehört\_zu ---(n)--- Buchexemplar} \\
+        \textit{Diskussion:} Ein Titel hat \("\)n\("\) Exemplare (remote). Ob \("\)n\("\) auch 0 sein darf, bleibt unklar.
+        \item \textbf{Min/Max-Notation (Local):} \texttt{Buchtitel ---[1, n]--- gehört\_zu ---[1, 1]--- Buchexemplar} \\
+        Am Buchtitel wird mit \texttt{[1, n]} definiert, dass mindestens ein Exemplar in der Datenbank vorliegen muss. Lokal am Exemplar steht \texttt{[1, 1]}, weil es physisch exakt einem Buchtitel angehört.
+    \end{itemize}
+
+    \paragraph*{Einschränkung 4: Nutzer und Ausleihe (Max. 15 Bücher pro Nutzer)}
+    \begin{itemize}
+        \item \textbf{Einfache Notation (Remote):} \texttt{Nutzer ---(1)--- Ausleihe ---(n)--- Buchexemplar} \\
+        Das drückt lediglich aus, dass ein Nutzer \("\)n\("\) (beliebig viele) Bücher ausleihen kann. Eine exakte Obergrenze ist nicht darstellbar.
+        \item \textbf{Min/Max-Notation (Local):} \texttt{Nutzer ---[0, 15]--- Ausleihe ---[0, 1]--- Buchexemplar} \\
+        \textit{Diskussion:} Die Restriktion von max. 15 Büchern steht direkt beim Nutzer. Beim Exemplar steht \texttt{[0, 1]}, da es entweder frei ist (0) oder von genau einem Nutzer (1) ausgeliehen wird.
+    \end{itemize}
+
+    \exercise{1.2: Aufstellen von Entity-Relationship-Diagrammen}
+
+    \subsection*{i) ER-Diagramm mit Generalisierung}
+
+% ACHTUNG: \usetikzlibrary{shapes.geometric} in der Präambel laden (für das is-a Hexagon)!
+% ACHTUNG: \usepackage[normalem]{ulem} in der Präambel laden (für \dashuline)!
+
+    \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}[
+            every node/.style={font=\sffamily},
+            entity/.style={rectangle, draw, thick, minimum width=2.5cm, minimum height=1cm, align=center},
+            weak entity/.style={rectangle, draw, thick, double, double distance=1.5pt, minimum width=2.5cm, minimum height=1cm, align=center},
+            relationship/.style={diamond, draw, thick, align=center, inner sep=4pt},
+        % is-a als Hexagon (regular polygon sides=6)
+            isa/.style={regular polygon, regular polygon sides=6, draw, thick, inner sep=1pt, minimum size=1.5cm, align=center, font=\sffamily\footnotesize},
+            attribute/.style={ellipse, draw, align=center, inner sep=2pt, font=\sffamily\footnotesize},
+            multi attribute/.style={ellipse, draw, double, double distance=1.5pt, align=center, inner sep=2pt, font=\sffamily\footnotesize}
+        ]
+
+% ==========================================
+% 1. ENTITÄTEN & BEZIEHUNGEN (Absolutes Grid)
+% ==========================================
+
+% --- Linke Spalte: Generalisierung ---
+            \node[entity] (person) at (-10, -5) {Person};
+            \node[isa] (isa_node) at (-7, -5) {is-a};
+
+            \node[entity] (autor) at (-3, 0) {Autor};
+            \node[entity] (nutzer) at (-3, -5) {Nutzer};
+            \node[entity] (bib) at (-3, -10) {Bibliothekar};
+
+% --- Mittlere Spalte: Kern-System ---
+            \node[relationship] (schreibt) at (1, 0) {schreibt};
+            \node[entity] (buchtitel) at (5, 0) {Buchtitel};
+
+            \node[relationship] (gehoertzu) at (5, -2.5) {gehört\_zu};
+            \node[weak entity] (exemplar) at (5, -5) {Buchexemplar};
+            \node[relationship] (ausleihe) at (5, -8.5) {Ausleihe};
+
+% --- Rechte Spalte: Verlag ---
+            \node[relationship] (verlegt) at (9, 0) {verlegt};
+            \node[entity] (verlag) at (12, 0) {Verlag};
+
+
+% ==========================================
+% 2. KANTEN & KARDINALITÄTEN
+% ==========================================
+
+% Generalisierung (Bus-System mit perfekten rechten Winkeln "-|")
+            \draw[thick] (person.east) -- (isa_node.west);
+            \draw[thick] (autor.west) -| (isa_node.north);
+            \draw[thick] (nutzer.west) -- (isa_node.east);
+            \draw[thick] (bib.west) -| (isa_node.south);
+
+% Buch & Autor & Verlag
+            \draw[thick] (autor.east) -- node[above] {n} (schreibt.west);
+            \draw[thick] (schreibt.east) -- node[above] {m} (buchtitel.west);
+            \draw[thick] (verlag.west) -- node[above] {1} (verlegt.east);
+            \draw[thick] (verlegt.west) -- node[above] {n} (buchtitel.east);
+
+% Buch & Exemplar (mit Pfeil für schwache Entität)
+            \draw[thick] (buchtitel.south) -- node[right] {1} (gehoertzu.north);
+            \draw[thick, ->] (gehoertzu.south) -- node[right] {n} (exemplar.north);
+
+% Ausleihe (Ternär)
+            \draw[thick] (exemplar.south) -- node[right] {m} (ausleihe.north);
+            \draw[thick] (nutzer.east) -- node[above, sloped] {1} (ausleihe.north west);
+            \draw[thick] (bib.east) -- node[below, sloped] {1} (ausleihe.south west);
+
+
+% ==========================================
+% 3. ATTRIBUTE
+% ==========================================
+
+% --- Attribute von Person ---
+            \node[attribute] (p_pers) at (-10, -3.5) {\underline{PersAuswNr}};
+            \node[attribute] (p_vor) at (-12, -5) {Vorname};
+            \node[attribute] (p_nach) at (-11.5, -6.5) {Nachname};
+            \node[attribute] (p_geb) at (-8.5, -6.5) {Geburtsdatum};
+            \draw (person) -- (p_pers); \draw (person) -- (p_vor);
+            \draw (person) -- (p_nach); \draw (person) -- (p_geb);
+
+% --- Spezifische Attribute Subtypen ---
+            \node[attribute] (a_pseudo) at (-3, 1.5) {Pseudonym};
+            \draw (autor) -- (a_pseudo);
+
+% Adresse repariert und oberhalb von Nutzer platziert, damit nichts kreuzt
+            \node[attribute] (n_adr) at (-3, -3) {Adresse};
+            \node[attribute] (n_str) at (-4.5, -1.8) {Straße};
+            \node[attribute] (n_ort) at (-3, -1.8) {Ort};
+            \node[attribute] (n_plz) at (-1.5, -1.8) {PLZ};
+            \draw (nutzer) -- (n_adr);
+            \draw (n_adr) -- (n_str); \draw (n_adr) -- (n_ort); \draw (n_adr) -- (n_plz);
+
+            \node[attribute] (bib_gehalt) at (-3, -11.5) {Gehalt};
+            \draw (bib) -- (bib_gehalt);
+
+% --- Attribute Buchtitel ---
+            \node[attribute] (b_isbn) at (3.5, 1.5) {\underline{ISBN}};
+            \node[attribute] (b_titel) at (5, 1.5) {Titel};
+            \node[attribute] (b_sig) at (6.5, 1.5) {Signatur};
+            \node[attribute] (b_seite) at (3.5, -1.2) {Seitenzahl};
+            \node[attribute] (b_jahr) at (6.5, -1.2) {Jahr};
+            \draw (buchtitel) -- (b_isbn); \draw (buchtitel) -- (b_titel); \draw (buchtitel) -- (b_sig);
+            \draw (buchtitel) -- (b_seite); \draw (buchtitel) -- (b_jahr);
+
+% --- Attribute Verlag ---
+            \node[attribute] (v_name) at (12, 1.5) {\underline{Name}};
+            \node[attribute] (v_ort) at (14, 0) {Verlagsort};
+            \draw (verlag) -- (v_name); \draw (verlag) -- (v_ort);
+
+% --- Attribute Buchexemplar ---
+            \node[attribute] (e_nr) at (7.5, -4.5) {\dashuline{Nummer}};
+            \node[attribute] (e_stand) at (7.5, -5.5) {Standort};
+            \draw (exemplar) -- (e_nr); \draw (exemplar) -- (e_stand);
+
+% --- Attribut Ausleihe ---
+            \node[attribute] (aus_datum) at (5, -10) {Ausleihdatum};
+            \draw (ausleihe) -- (aus_datum);
+
+        \end{tikzpicture}
+    }
 \end{document}
