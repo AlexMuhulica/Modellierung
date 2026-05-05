@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  5 MAY 2026 12:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  5 MAY 2026 22:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Template_WinzerOrtega_Muhulica.tex
+**A02_WinzerOrtega_Muhulica.tex
 
-(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/Template_W
-inzerOrtega_Muhulica.tex
+(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/A02_Winzer
+Ortega_Muhulica.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/koma-script/scrartcl.cls
@@ -949,9 +949,9 @@ LaTeX Font Info:    Trying to load font information for T1+lmr on input line 15
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/Template_W
-inzerOrtega_Muhulica.aux)
-\openout1 = `Template_WinzerOrtega_Muhulica.aux'.
+(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/A02_Winzer
+Ortega_Muhulica.aux)
+\openout1 = `A02_WinzerOrtega_Muhulica.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
@@ -1043,12 +1043,12 @@ Package tocbasic Info: setting babel extension for `lol' on input line 15.
 
 Package hyperref Info: Link coloring OFF on input line 15.
 
-(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/Template_W
-inzerOrtega_Muhulica.out)
-(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/Template_W
-inzerOrtega_Muhulica.out)
+(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/A02_Winzer
+Ortega_Muhulica.out)
+(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/A02_Winzer
+Ortega_Muhulica.out)
 \@outlinefile=\write4
-\openout4 = `Template_WinzerOrtega_Muhulica.out'.
+\openout4 = `A02_WinzerOrtega_Muhulica.out'.
 
 Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           Using `bookmark' together with `hyperref' is recommended,
@@ -1068,48 +1068,48 @@ File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
 \BKM@id=\count344
 ))
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-2.
+1.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-4.
+3.
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-4.
+3.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-24.
+23.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-24.
+23.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 24.
+(Font)              <12> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 24.
+(Font)              <8> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 24.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
+(Font)              <6> on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
 
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
 
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1119,37 +1119,61 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 
-[2]
+/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/A02_WinzerO
+rtega_Muhulica.tex:41: LaTeX Error: There's no line here to end.
 
-[3]
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.41 	\textbf
+             {Mit Join-Operator:} \\
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-[4]
-(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/Template_W
-inzerOrtega_Muhulica.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+ []
+
+
+
+[2{/usr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/u
+sr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
+texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+(/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-2/A02_Winzer
+Ortega_Muhulica.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
-Package rerunfilecheck Info: File `Template_WinzerOrtega_Muhulica.out' has not 
-changed.
+Package rerunfilecheck Info: File `A02_WinzerOrtega_Muhulica.out' has not chang
+ed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30264 strings out of 473579
- 605172 string characters out of 5725712
- 1152436 words of memory out of 5000000
- 52673 multiletter control sequences out of 15000+600000
- 585740 words of font info for 59 fonts, out of 8000000 for 9000
+ 30292 strings out of 473579
+ 605722 string characters out of 5725712
+ 1156426 words of memory out of 5000000
+ 52690 multiletter control sequences out of 15000+600000
+ 601748 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,20n,107p,10925b,496s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmr12.pfb></us
-r/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/loc
-al/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb>
+ 108i,20n,107p,10920b,496s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></u
+sr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/lo
+cal/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/te
+xlive/2024basic/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/
+2024basic/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2024bas
+ic/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2024basic/te
+xmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2024basic/texmf-d
+ist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024basic/texmf-dist
+/fonts/type1/public/lm/lmsy10.pfb>
 Output written on /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/B
-latt-2/Template_WinzerOrtega_Muhulica.pdf (4 pages, 76343 bytes).
+latt-2/A02_WinzerOrtega_Muhulica.pdf (2 pages, 173946 bytes).
 PDF statistics:
- 50 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
+ 88 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,94 @@
+
+\documentclass[12pt]{scrartcl}
+
+\input{../styles/Packages}
+\input{../styles/FormatAndHeader}
+
+
+
+% \stepcounter{countername}: Increases counter
+\setcounter{sheetnr}{0} % Number of sheet
+
+
+\setcounter{exnum}{1} % Exercise number
+
+\begin{document}
+% Nutze den \exercise{Aufgabenname} Befehl, um eine neue Aufgabe zu beginnen.
+% Möchtest du eine Aufgabe in der Nummerierung überspringen, schreibe vor der Aufgabe: \stepcounter{exnum}
+% Möchtest du die Nummer einer Aufgabe auf eine beliebige Zahl x setzen, schreibe vor der Aufgabe: \setcounter{exnum}{x}
+
+	%TODO:
+	\exercise{Aufgabe 2.1}
+
+	\newpage
+
+
+	\exercise{Aufgabe 2.2: Anfragen an eine Universitätsdatenbank}
+
+	\subsection*{a)}
+% Selektion nach Rang, anschließende Projektion auf Name und Raum.
+	\[
+		\pi_{Name, Raum}(\sigma_{Rang = \text{'C4'}}(Professoren))
+	\]
+
+	\subsection*{b) }
+% Natural Join über die drei Relationen (verkettet automatisch MatrNr und VorlNr), dann Selektion und Projektion.
+	\[
+		\pi_{Name}(\sigma_{Titel = \text{'Logik'}}(Studenten \bowtie hoeren \bowtie Vorlesungen))
+	\]
+
+	\subsection*{c)} \\
+	\textbf{Mit Join-Operator:} \\
+% Da beide Relationen Attribute wie "Name" und "PersNr" haben, nutzen wir einen expliziten Theta-Join.
+	\[
+		\pi_{Assistenten.PersNr, Boss}(Assistenten \bowtie_{Boss = Professoren.PersNr} Professoren)
+	\]
+
+	\noindent \textbf{Ohne Join-Operator:} \\
+	Hier gibt es zwei Lösungswege.
+	Die Relation \textit{Assistenten} besitzt bereits die \textit{PersNr} und den \textit{Boss} (welcher die PersNr des Vorgesetzten ist).
+	Deswegen reicht eine simple Projektion auf eine einzige Tabelle:
+	\[
+		\pi_{PersNr, Boss}(Assistenten)
+	\]
+	 Sollte die Aufgabe darauf abzielen, den Join-Operator durch die fundamentalen Operatoren zu ersetzen, nutzen wir das Kreuzprodukt ($\times$) kombiniert mit einer Selektion:
+	\[
+		\pi_{Assistenten.PersNr, Boss}(\sigma_{Boss = Professoren.PersNr}(Assistenten \times Professoren))
+	\]
+
+	\subsection*{d)}
+% Der Union-Operator (Vereinigung) wirft automatisch Duplikate heraus.
+	\[
+		\pi_{Name}(Professoren) \cup \pi_{Name}(Studenten) \cup \pi_{Name}(Assistenten)
+	\]
+
+	\subsection*{e)}
+% Die Differenz (-) zieht von der Menge aller Studenten die Menge der geprüften Studenten ab.
+	\[
+		\pi_{MatrNr}(Studenten) - \pi_{MatrNr}(pruefen)
+	\]
+
+	\subsection*{f)}
+% Nutzung des Aggregations-Operators (gamma) aus der Vorlesung.
+	\[
+		\gamma_{\text{MAX}(Semester)}(Studenten)
+	\]
+
+	\subsection*{g)}
+% Gruppierung steht links unten am Gamma, die Aggregationsfunktion unten rechts.
+	\[
+		_{VorlNr}\gamma_{\text{COUNT}(MatrNr)}(hoeren)
+	\]
+
+	\subsection*{h)}
+% Dividend: Alle möglichen Hörer-Vorlesungs-Paare.
+% Divisor: Alle Vorlesungsnummern der Vorlesungen von Kant.
+% Das Ergebnis der Division sind exakt die MatrNr, die mit JEDER VorlNr aus dem Divisor kombiniert in hoeren stehen.
+	\[
+		\pi_{MatrNr, VorlNr}(hoeren) \div \pi_{VorlNr}(\sigma_{Name = \text{'Kant'}}(Professoren) \bowtie_{PersNr = gelesenVon} Vorlesungen)
+	\]
+
+
+
+
+\end{document}
