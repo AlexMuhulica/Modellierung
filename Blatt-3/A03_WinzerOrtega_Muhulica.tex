@@ -1,0 +1,127 @@
+\documentclass[12pt]{scrartcl}
+
+\input{../styles/Packages}
+\input{../styles/FormatAndHeader}
+
+\usepackage{xcolor} % Für die Farben im Code
+
+% Definiere das Aussehen des Codes
+\lstset{
+    language=SQL,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,           % Zeilennummern links
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    showstringspaces=false, % Keine komischen Unterstriche in Strings
+    tabsize=4,
+    breaklines=true,        % Automatischer Zeilenumbruch
+    breakatwhitespace=false,
+    frame=single,           % Ein Rahmen um den Code
+    extendedchars=true,
+    literate={ö}{{\"o}}1 {ä}{{\"a}}1 {ü}{{\"u}}1 {ß}{{\ss}}1 {Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1
+}
+
+% \stepcounter{countername}: Increases counter
+\setcounter{sheetnr}{3} % Number of sheet
+
+
+\setcounter{exnum}{1} % Exercise number
+
+\begin{document}
+% Nutze den \exercise{Aufgabenname} Befehl, um eine neue Aufgabe zu beginnen.
+% Möchtest du eine Aufgabe in der Nummerierung überspringen, schreibe vor der Aufgabe: \stepcounter{exnum}
+% Möchtest du die Nummer einer Aufgabe auf eine beliebige Zahl x setzen, schreibe vor der Aufgabe: \setcounter{exnum}{x}
+
+    %TODO:
+    \exercise{Abgabe 3.1: SQL-Abfragen}
+
+
+    \newpage
+
+    \exercise{Abgabe 3.2: SQL-Anweisungen}
+
+    \subsection*{a) Neue Abteilung in München eröffnen}
+% Mit dem INSERT INTO Befehl fügen wir einen neuen Datensatz in die Tabelle Abteilung ein.
+    \begin{lstlisting}[language=SQL]
+INSERT INTO Abteilung (AbteilungsNr, Name, Ort)
+VALUES (11, 'A11', 'München');
+    \end{lstlisting}
+
+    \subsection*{b) Alle Abteilungen in Stuttgart löschen}
+% DELETE Anweisung mit einfacher Filterung auf den Ort.
+    \begin{lstlisting}[language=SQL]
+DELETE FROM Abteilung
+WHERE Ort = 'Stuttgart';
+    \end{lstlisting}
+
+    \subsection*{c) Mitarbeiter aus Köln in Abteilung 11 versetzen}
+% Standard-SQL sieht keinen direkten JOIN in der UPDATE-Klausel vor.
+% Daher ermitteln wir die Kölner Abteilungen über eine unkorrelierte Unterabfrage.
+    \begin{lstlisting}[language=SQL]
+UPDATE Angestellter
+SET AbteilungsNr = 11
+WHERE AbteilungsNr IN (
+    SELECT AbteilungsNr
+    FROM Abteilung
+    WHERE Ort = 'Köln'
+);
+    \end{lstlisting}
+
+    \subsection*{d) Sicht für Hamburger Projekte mit mind. 10 Mitarbeitern}
+% Joins laut Vorgabe über die WHERE-Klausel. Um zu zählen, müssen wir gruppieren.
+% In der SELECT-Klausel dürfen nur Attribute stehen, die auch gruppiert wurden
+% (oder aggregiert werden).
+    \begin{lstlisting}[language=SQL]
+CREATE VIEW HamburgerProjekte AS
+SELECT Projekt.ProjektNr, Projekt.Projektname, Projekt.Projektort
+FROM Projekt, Projektmitarbeit
+WHERE Projekt.ProjektNr = Projektmitarbeit.ProjektNr
+  AND Projekt.Projektort = 'Hamburg'
+GROUP BY Projekt.ProjektNr, Projekt.Projektname, Projekt.Projektort
+HAVING COUNT(Projektmitarbeit.PersonalNr) >= 10;
+    \end{lstlisting}
+
+    \subsection*{e) Inhalt der Tabelle Angestellter löschen}
+% Ein DELETE ohne WHERE-Klausel löscht alle Datensätze, lässt die
+% Tabellenstruktur aber unberührt.
+    \begin{lstlisting}[language=SQL]
+DELETE FROM Angestellter;
+    \end{lstlisting}
+
+    \newpage
+
+    \subsection*{f) Tabellen Angestellter und Abteilung anlegen}
+% Die Tabelle 'Abteilung' muss zwingend VOR der Tabelle 'Angestellter' angelegt werden,
+% da 'Angestellter' einen Fremdschlüssel auf 'Abteilung' besitzt.
+% Für Textwerte wird VARCHAR, für Nummern INTEGER und für das Gehalt DECIMAL verwendet.
+    \begin{lstlisting}[language=SQL]
+CREATE TABLE Abteilung (
+    AbteilungsNr INTEGER,
+    Name VARCHAR(100),
+    Ort VARCHAR(100),
+    PRIMARY KEY (AbteilungsNr)
+);
+
+CREATE TABLE Angestellter (
+    PersonalNr INTEGER,
+    Name VARCHAR(100),
+    Vorname VARCHAR(100),
+    Beruf VARCHAR(100),
+    Gehalt DECIMAL(10,2),
+    AbteilungsNr INTEGER,
+    Manager INTEGER,
+    Geburtstag DATE,
+    Wohnort VARCHAR(100),
+    PRIMARY KEY (PersonalNr),
+    FOREIGN KEY (AbteilungsNr) REFERENCES Abteilung(AbteilungsNr)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+    FOREIGN KEY (Manager) REFERENCES Angestellter(PersonalNr)
+);
+    \end{lstlisting}
+
+
+\end{document}
