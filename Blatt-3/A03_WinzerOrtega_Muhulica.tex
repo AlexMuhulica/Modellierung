@@ -94,34 +94,34 @@ DELETE FROM Angestellter;
     \newpage
 
     \subsection*{f) Tabellen Angestellter und Abteilung anlegen}
-% Die Tabelle 'Abteilung' muss zwingend VOR der Tabelle 'Angestellter' angelegt werden,
-% da 'Angestellter' einen Fremdschlüssel auf 'Abteilung' besitzt.
-% Für Textwerte wird VARCHAR, für Nummern INTEGER und für das Gehalt DECIMAL verwendet.
-    \begin{lstlisting}[language=SQL]
+% Die Datentypen, Längen und NOT NULL Constraints (nullable = false) wurden exakt
+% aus der ODPS-Spezifikation übernommen.
+% Die Tabelle 'Abteilung' wird zuerst angelegt, da 'Angestellter' darauf referenziert.
+\begin{lstlisting}[language=SQL]
 CREATE TABLE Abteilung (
-    AbteilungsNr INTEGER,
-    Name VARCHAR(100),
-    Ort VARCHAR(100),
+    AbteilungsNr INTEGER NOT NULL,
+    Name VARCHAR(25) NOT NULL,
+    Ort VARCHAR(25),
     PRIMARY KEY (AbteilungsNr)
 );
 
 CREATE TABLE Angestellter (
-    PersonalNr INTEGER,
-    Name VARCHAR(100),
-    Vorname VARCHAR(100),
-    Beruf VARCHAR(100),
-    Gehalt DECIMAL(10,2),
-    AbteilungsNr INTEGER,
+    PersonalNr INTEGER NOT NULL,
+    Name VARCHAR(25),
+    Vorname VARCHAR(25),
+    Beruf VARCHAR(25),
+    Gehalt DECIMAL(8),
+    AbteilungsNr INTEGER NOT NULL,
     Manager INTEGER,
     Geburtstag DATE,
-    Wohnort VARCHAR(100),
+    Wohnort VARCHAR(25),
     PRIMARY KEY (PersonalNr),
     FOREIGN KEY (AbteilungsNr) REFERENCES Abteilung(AbteilungsNr)
         ON DELETE CASCADE
         ON UPDATE RESTRICT,
     FOREIGN KEY (Manager) REFERENCES Angestellter(PersonalNr)
 );
-    \end{lstlisting}
+\end{lstlisting}
 
 
 \end{document}
