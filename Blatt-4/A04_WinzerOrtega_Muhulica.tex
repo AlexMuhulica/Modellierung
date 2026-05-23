@@ -1,0 +1,119 @@
+\documentclass[12pt]{scrartcl}
+
+\input{../styles/Packages}
+\input{../styles/FormatAndHeader}
+
+\usepackage{xcolor} % Für die Farben im Code
+
+% Definiere das Aussehen des Codes
+\lstset{
+    language=SQL,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,           % Zeilennummern links
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    showstringspaces=false, % Keine komischen Unterstriche in Strings
+    tabsize=4,
+    breaklines=true,        % Automatischer Zeilenumbruch
+    breakatwhitespace=false,
+    frame=single,           % Ein Rahmen um den Code
+    extendedchars=true,
+    literate={ö}{{\"o}}1 {ä}{{\"a}}1 {ü}{{\"u}}1 {ß}{{\ss}}1 {Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1
+}
+
+% \stepcounter{countername}: Increases counter
+\setcounter{sheetnr}{4} % Number of sheet
+
+
+\setcounter{exnum}{1} % Exercise number
+
+\begin{document}
+% Nutze den \exercise{Aufgabenname} Befehl, um eine neue Aufgabe zu beginnen.
+% Möchtest du eine Aufgabe in der Nummerierung überspringen, schreibe vor der Aufgabe: \stepcounter{exnum}
+% Möchtest du die Nummer einer Aufgabe auf eine beliebige Zahl x setzen, schreibe vor der Aufgabe: \setcounter{exnum}{x}
+
+    %
+    \exercise{Abgabe 4.1: SQL-Abfragen}
+    \exercise{4.2: Relationenalgebra und SQL}
+
+\subsection*{a) Relationenalgebra: Dozenten, die keine Vorlesung halten}
+% Wir ermitteln die Personalnummern aller Professoren und ziehen davon die
+% Personalnummern derer ab, die in "Vorlesungen" als "gelesenVon" eingetragen sind.
+% Anschließend wird das Ergebnis mit Professoren gejoint, um den Namen zu projizieren.
+\[
+\pi_{Name}\left( Professoren \bowtie \left( \pi_{PersNr}(Professoren) - \pi_{gelesenVon}(Vorlesungen) \right) \right)
+\]
+
+\subsection*{b) SQL: Dozenten, die keine Vorlesung halten}
+% Umsetzung der Differenz aus Teilaufgabe a) mittels einer NOT IN-Unterabfrage.
+\begin{lstlisting}[language=SQL]
+SELECT Name
+FROM Professoren
+WHERE PersNr NOT IN (
+    SELECT gelesenVon
+    FROM Vorlesungen
+    WHERE gelesenVon IS NOT NULL
+);
+\end{lstlisting}
+
+\subsection*{c) Relationenalgebra: Studenten mit mindestens zwei Vorlesungen von Kant}
+% Wir nutzen zwei unabhängige Kopien (mittels Umbenennung \rho) der "hoeren"-Relation,
+% um paarweise unterschiedliche Vorlesungen (V1.VorlNr \neq V2.VorlNr) für dieselbe
+% MatrNr zu finden, die beide von Kant gelesen werden.
+\begin{align*}
+&\pi_{Name}\Big( Studenten \bowtie \pi_{MatrNr} \Big( \\
+&\quad  (\rho_{V1}(hoeren) \bowtie \sigma_{Name=\text{'Kant'}}(Professoren \bowtie_{PersNr=gelesenVon} Vorlesungen)) \\
+&\quad  \bowtie_{V1.MatrNr = V2.MatrNr \land V1.VorlNr \neq V2.VorlNr} \\
+&\quad  (\rho_{V2}(hoeren) \bowtie \sigma_{Name=\text{'Kant'}}(Professoren \bowtie_{PersNr=gelesenVon} Vorlesungen)) \\
+&\Big)\Big)
+\end{align*}
+
+\subsection*{d) SQL: Studenten mit mindestens zwei Vorlesungen von Kant}
+% Eleganter und effizienter über GROUP BY und HAVING COUNT.
+% Es werden alle Bedingungen der Joins explizit im WHERE-Teil deklariert.
+\begin{lstlisting}[language=SQL]
+SELECT Studenten.Name
+FROM Studenten, hoeren, Vorlesungen, Professoren
+WHERE Studenten.MatrNr = hoeren.MatrNr
+  AND hoeren.VorlNr = Vorlesungen.VorlNr
+  AND Vorlesungen.gelesenVon = Professoren.PersNr
+  AND Professoren.Name = 'Kant'
+GROUP BY Studenten.MatrNr, Studenten.Name
+HAVING COUNT(hoeren.VorlNr) >= 2;
+\end{lstlisting}
+
+\subsection*{e) Relationenalgebra: Studenten, die nur Vorlesungen mit 4 SWS hören}
+% All-Quantifizierung ("nur") wird über die Mengendifferenz realisiert:
+% Alle Studenten, die überhaupt irgendetwas hören minus diejenigen Studenten,
+% die mindestens eine Vorlesung hören, die NICHT 4 SWS hat.
+\[
+\pi_{Name}\left( Studenten \bowtie \left(
+    \pi_{MatrNr}(hoeren) - \pi_{MatrNr}(\sigma_{SWS \neq 4}(hoeren \bowtie Vorlesungen))
+\right)\right)
+\]
+
+\subsection*{f) SQL: Studenten, die nur Vorlesungen mit 4 SWS hören}
+% Analoge Umsetzung zur Relationenalgebra mittels NOT IN und einer Unterabfrage,
+% die alle Hörer von Vorlesungen ungleich 4 SWS identifiziert.
+\begin{lstlisting}[language=SQL]
+SELECT Name
+FROM Studenten
+WHERE MatrNr IN (SELECT MatrNr FROM hoeren) -- Hat ueberhaupt Vorlesungen
+  AND MatrNr NOT IN (
+    SELECT hoeren.MatrNr
+    FROM hoeren, Vorlesungen
+    WHERE hoeren.VorlNr = Vorlesungen.VorlNr
+      AND Vorlesungen.SWS <> 4
+  );
+\end{lstlisting}
+
+    \newpage
+
+    \exercise{Abgabe 4.2}
+
+
+
+\end{document}
