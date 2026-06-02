@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  24 MAY 2026 00:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  24 MAY 2026 23:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1077,55 +1077,58 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 3
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
-6.
+3.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
-6.
+3.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-46.
+43.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-46.
+43.
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 46.
+(Font)              <12> on input line 43.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 46.
+(Font)              <8> on input line 43.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 46.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+(Font)              <6> on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
 
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
 
 
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-2.
+Overfull \hbox (208.14574pt too wide) detected at line 62
+\OML/lmm/m/it/12 ^^Y[] []
+ []
 
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
+6.
 (/usr/local/texlive/2024basic/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 53.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 67.
 
 
 [1{/usr/local/texlive/2024basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/
@@ -1133,12 +1136,9 @@ usr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
 
 {/usr/local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr
 /local/texlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/te
-xlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive
-/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+xlive/2024basic/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 [2]
-
-[3]
 (/Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/Blatt-4/A04_Winzer
 Ortega_Muhulica.aux)
  ***********
@@ -1150,31 +1150,28 @@ ed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30891 strings out of 473579
- 612077 string characters out of 5725712
- 1440141 words of memory out of 5000000
- 53252 multiletter control sequences out of 15000+600000
- 598752 words of font info for 67 fonts, out of 8000000 for 9000
+ 30889 strings out of 473579
+ 612026 string characters out of 5725712
+ 1500143 words of memory out of 5000000
+ 53257 multiletter control sequences out of 15000+600000
+ 598433 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,19n,107p,10920b,1434s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmex10.pfb></u
-sr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/lo
-cal/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/te
-xlive/2024basic/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/
-2024basic/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2024bas
-ic/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2024basic/texm
-f-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2024basic/texmf-dis
-t/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024basic/texmf-dist/f
-onts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024basic/texmf-dist/fonts/
-type1/public/lm/lmsy8.pfb></usr/local/texlive/2024basic/texmf-dist/fonts/type1/
-public/lm/lmtk10.pfb></usr/local/texlive/2024basic/texmf-dist/fonts/type1/publi
-c/lm/lmtt10.pfb></usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/
-lmtti10.pfb>
+</usr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></u
+sr/local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/loc
+al/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/tex
+live/2024basic/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/20
+24basic/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2024basic
+/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2024basic/texm
+f-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024basic/texmf-d
+ist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024basic/texmf-dist/fo
+nts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2024basic/texmf-dist/fonts/t
+ype1/public/lm/lmtt10.pfb>
 Output written on /Users/alexandrumuhulica/Desktop/Programmieren/Modellierung/B
-latt-4/A04_WinzerOrtega_Muhulica.pdf (3 pages, 224530 bytes).
+latt-4/A04_WinzerOrtega_Muhulica.pdf (2 pages, 202405 bytes).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 118 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
+ 35 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

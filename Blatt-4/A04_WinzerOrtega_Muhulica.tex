@@ -36,79 +36,77 @@
 % Möchtest du die Nummer einer Aufgabe auf eine beliebige Zahl x setzen, schreibe vor der Aufgabe: \setcounter{exnum}{x}
 
     %
-    \exercise{Abgabe 4.1: SQL-Abfragen}
-    \exercise{4.2: Relationenalgebra und SQL}
+    \exercise{4.1: SQL und Relationenalgebra}
 
-\subsection*{a) Relationenalgebra: Dozenten, die keine Vorlesung halten}
-% Wir ermitteln die Personalnummern aller Professoren und ziehen davon die
-% Personalnummern derer ab, die in "Vorlesungen" als "gelesenVon" eingetragen sind.
-% Anschließend wird das Ergebnis mit Professoren gejoint, um den Namen zu projizieren.
-\[
-\pi_{Name}\left( Professoren \bowtie \left( \pi_{PersNr}(Professoren) - \pi_{gelesenVon}(Vorlesungen) \right) \right)
-\]
+    \subsection*{a) Relationale Algebra: Kunden jünger als 40 Jahre}
+% Einfache Selektion auf das Alter, gefolgt von einer Projektion auf den Namen.
+    \[
+        \pi_{k\_name}(\sigma_{k\_alter < 40}(kunde))
+    \]
 
-\subsection*{b) SQL: Dozenten, die keine Vorlesung halten}
-% Umsetzung der Differenz aus Teilaufgabe a) mittels einer NOT IN-Unterabfrage.
-\begin{lstlisting}[language=SQL]
-SELECT Name
-FROM Professoren
-WHERE PersNr NOT IN (
-    SELECT gelesenVon
-    FROM Vorlesungen
-    WHERE gelesenVon IS NOT NULL
-);
-\end{lstlisting}
+    \subsection*{b) Relationale Algebra: Bankkonten mit hohem Darlehen und Kontaktperson nicht in Berlin}
+% Um die Attribute aus darlehen, bankkonto, mitarbeiter und adresse zu verknüpfen,
+% nutzen wir Theta-Joins. Unnötige Tabellen (wie kunde) werden weggelassen.
+% Vor den Joins filtern wir die Tabellen darlehen und adresse direkt, um die Datenmenge
+% frühzeitig zu reduzieren (Push-Down-Prinzip).
+    \[
+        \pi_{b\_id} \left(
+                        \sigma_{d\_kredithoehe > 30000}(darlehen)
+                        \bowtie_{d\_bankkonto = b\_id}
+                        bankkonto
+                        \bowtie_{b\_kontaktperson = m\_id}
+                        mitarbeiter
+                        \bowtie_{m\_adresse = a\_id}
+                        \sigma_{a\_ort \neq \text{'Berlin'}}(adresse)
+        \right)
+    \]
 
-\subsection*{c) Relationenalgebra: Studenten mit mindestens zwei Vorlesungen von Kant}
-% Wir nutzen zwei unabhängige Kopien (mittels Umbenennung \rho) der "hoeren"-Relation,
-% um paarweise unterschiedliche Vorlesungen (V1.VorlNr \neq V2.VorlNr) für dieselbe
-% MatrNr zu finden, die beide von Kant gelesen werden.
-\begin{align*}
-&\pi_{Name}\Big( Studenten \bowtie \pi_{MatrNr} \Big( \\
-&\quad  (\rho_{V1}(hoeren) \bowtie \sigma_{Name=\text{'Kant'}}(Professoren \bowtie_{PersNr=gelesenVon} Vorlesungen)) \\
-&\quad  \bowtie_{V1.MatrNr = V2.MatrNr \land V1.VorlNr \neq V2.VorlNr} \\
-&\quad  (\rho_{V2}(hoeren) \bowtie \sigma_{Name=\text{'Kant'}}(Professoren \bowtie_{PersNr=gelesenVon} Vorlesungen)) \\
-&\Big)\Big)
-\end{align*}
+    \subsection*{c) SQL: Name, Alter, PLZ aller Kunden, aufsteigend sortiert nach Alter}
+% Einfacher Join zwischen Kunde und Adresse in der WHERE-Klausel.
+    \begin{lstlisting}[language=SQL]
+SELECT kunde.k_name, kunde.k_alter, adresse.a_plz
+FROM kunde, adresse
+WHERE kunde.k_adresse = adresse.a_id
+ORDER BY kunde.k_alter ASC;
+    \end{lstlisting}
 
-\subsection*{d) SQL: Studenten mit mindestens zwei Vorlesungen von Kant}
-% Eleganter und effizienter über GROUP BY und HAVING COUNT.
-% Es werden alle Bedingungen der Joins explizit im WHERE-Teil deklariert.
-\begin{lstlisting}[language=SQL]
-SELECT Studenten.Name
-FROM Studenten, hoeren, Vorlesungen, Professoren
-WHERE Studenten.MatrNr = hoeren.MatrNr
-  AND hoeren.VorlNr = Vorlesungen.VorlNr
-  AND Vorlesungen.gelesenVon = Professoren.PersNr
-  AND Professoren.Name = 'Kant'
-GROUP BY Studenten.MatrNr, Studenten.Name
-HAVING COUNT(hoeren.VorlNr) >= 2;
-\end{lstlisting}
+    \subsection*{d) SQL: Mitarbeiter mit mehr als 10 qualifizierten Bankkonten}
+% Hier müssen wir die Mitarbeiter mit den Bankkonten verknüpfen und direkt auf
+% das Guthaben (> 20000) filtern. Anschließend wird über die Mitarbeiter-ID gruppiert.
+% WICHTIG: Alles, was im SELECT steht (außer den Aggregationen wie COUNT),
+% MUSS im GROUP BY stehen (daher m_id und m_name).
+    \begin{lstlisting}[language=SQL]
+SELECT mitarbeiter.m_name, COUNT(bankkonto.b_id)
+FROM mitarbeiter, bankkonto
+WHERE mitarbeiter.m_id = bankkonto.b_kontaktperson
+  AND bankkonto.b_guthaben > 20000
+GROUP BY mitarbeiter.m_id, mitarbeiter.m_name
+HAVING COUNT(bankkonto.b_id) > 10;
+    \end{lstlisting}
 
-\subsection*{e) Relationenalgebra: Studenten, die nur Vorlesungen mit 4 SWS hören}
-% All-Quantifizierung ("nur") wird über die Mengendifferenz realisiert:
-% Alle Studenten, die überhaupt irgendetwas hören minus diejenigen Studenten,
-% die mindestens eine Vorlesung hören, die NICHT 4 SWS hat.
-\[
-\pi_{Name}\left( Studenten \bowtie \left(
-    \pi_{MatrNr}(hoeren) - \pi_{MatrNr}(\sigma_{SWS \neq 4}(hoeren \bowtie Vorlesungen))
-\right)\right)
-\]
-
-\subsection*{f) SQL: Studenten, die nur Vorlesungen mit 4 SWS hören}
-% Analoge Umsetzung zur Relationenalgebra mittels NOT IN und einer Unterabfrage,
-% die alle Hörer von Vorlesungen ungleich 4 SWS identifiziert.
-\begin{lstlisting}[language=SQL]
-SELECT Name
-FROM Studenten
-WHERE MatrNr IN (SELECT MatrNr FROM hoeren) -- Hat ueberhaupt Vorlesungen
-  AND MatrNr NOT IN (
-    SELECT hoeren.MatrNr
-    FROM hoeren, Vorlesungen
-    WHERE hoeren.VorlNr = Vorlesungen.VorlNr
-      AND Vorlesungen.SWS <> 4
+    \subsection*{e) SQL: Kunden mit Darlehen über dem Durchschnitt}
+% Da die Tabelle "darlehen" glücklicherweise einen direkten Fremdschlüssel
+% "d_kunde" besitzt, ist ein überflüssiger Join über "bankkonto" nicht nötig!
+% DISTINCT verhindert doppelte Einträge, falls ein Kunde mehrere solche Darlehen hat.
+    \begin{lstlisting}[language=SQL]
+SELECT DISTINCT kunde.k_name, kunde.k_alter
+FROM kunde, darlehen
+WHERE kunde.k_id = darlehen.d_kunde
+  AND darlehen.d_kredithoehe > (
+      SELECT AVG(darlehen.d_kredithoehe)
+      FROM darlehen
   );
-\end{lstlisting}
+    \end{lstlisting}
+
+    \subsection*{f) SQL: Adressen-Ortsnamen standardisieren ('Koeln...')}
+% UPDATE-Befehl mit dem LIKE-Operator. Das Prozentzeichen (%) fungiert als Wildcard
+% für beliebig viele, beliebige Zeichenfolgen nach dem Wort 'Koeln'.
+    \begin{lstlisting}[language=SQL]
+UPDATE adresse
+SET a_ort = 'Koeln'
+WHERE a_ort LIKE 'Koeln%';
+    \end{lstlisting}
+
 
     \newpage
 
