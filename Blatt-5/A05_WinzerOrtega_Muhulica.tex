@@ -1,0 +1,244 @@
+\documentclass[12pt]{scrartcl}
+
+\input{../styles/Packages}
+\input{../styles/FormatAndHeader}
+
+\usepackage{xcolor} % Für die Farben im Code
+
+% Definiere das Aussehen des Codes
+\lstset{
+    language=SQL,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,           % Zeilennummern links
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    showstringspaces=false, % Keine komischen Unterstriche in Strings
+    tabsize=4,
+    breaklines=true,        % Automatischer Zeilenumbruch
+    breakatwhitespace=false,
+    frame=single,           % Ein Rahmen um den Code
+    extendedchars=true,
+    literate={ö}{{\"o}}1 {ä}{{\"a}}1 {ü}{{\"u}}1 {ß}{{\ss}}1 {Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1
+}
+
+% \stepcounter{countername}: Increases counter
+\setcounter{sheetnr}{5} % Number of sheet
+
+
+\setcounter{exnum}{1} % Exercise number
+
+\begin{document}
+
+    %TODO
+    \exercise{Abgabe 5.1}
+
+    \newpage
+
+    \exercise{5.2: BCNF}
+
+Gegeben ist das Relationenschema $\mathbf{R}(D, E, F)$ und die Menge der funktionalen Abhängigkeiten $\mathbf{X} = \{F \rightarrow E, DE \rightarrow F\}$.
+
+\subsubsection*{1. Bestimmung der Schlüsselkandidaten}
+Um zu prüfen, ob sich $\mathbf{R}$ in der BCNF befindet, müssen wir zunächst alle Schlüsselkandidaten ermitteln. Ein Attribut, das auf keiner rechten Seite der FDs steht, muss zwingend Teil jedes Schlüssels sein. Dies trifft auf $D$ zu. Wir prüfen die Hülle von Kombinationen mit $D$:
+\begin{itemize}
+    \item Hülle von $DF$: $(DF)^+ = \{D, F\} \cup \{E\} \text{ (wegen } F \rightarrow E) = \{D, E, F\} = \mathbf{R}$. \\
+    $\Rightarrow DF$ ist ein Schlüsselkandidat.
+    \item Hülle von $DE$: $(DE)^+ = \{D, E\} \cup \{F\} \text{ (wegen } DE \rightarrow F) = \{D, E, F\} = \mathbf{R}$. \\
+    $\Rightarrow DE$ ist ein Schlüsselkandidat.
+\end{itemize}
+Die Schlüsselkandidaten sind somit \textbf{DF} und \textbf{DE}. Alle Attribute ($D, E, F$) sind prim (Teil eines Schlüssels).
+
+\subsubsection*{2. Prüfung der BCNF-Eigenschaft}
+Ein Relationenschema ist in BCNF, wenn für jede nichttriviale funktionale Abhängigkeit $\alpha \rightarrow \beta$ gilt, dass die Determinante $\alpha$ ein Superschlüssel ist.
+\begin{itemize}
+    \item Betrachte die FD $F \rightarrow E$: Die Determinante ist $F$.
+    \item Prüfe, ob $F$ ein Superschlüssel ist: $(F)^+ = \{F, E\} \neq \mathbf{R}$.
+\end{itemize}
+Da $F$ \textbf{kein Superschlüssel} ist, verletzt die Abhängigkeit $F \rightarrow E$ die BCNF-Bedingung. \\
+\textit{Fazit:} Das Relationenschema $\mathbf{R}$ befindet sich \textbf{nicht in BCNF}.
+
+\subsubsection*{3. Überführung in die BCNF}
+Wir zerlegen $\mathbf{R}$ anhand der verletzenden Abhängigkeit $F \rightarrow E$.
+\begin{itemize}
+    \item \textbf{Relation 1} enthält die Attribute der verletzenden FD: \\
+    $\mathbf{R_1}(F, E)$ mit dem Schlüsselkandidaten \underline{$F$}.
+    \item \textbf{Relation 2} enthält die Determinante der verletzenden FD sowie alle restlichen Attribute von $\mathbf{R}$: \\
+    $\mathbf{R_2}(\mathbf{R} \setminus \{E\}) = \mathbf{R_2}(D, F)$ mit dem Schlüsselkandidaten \underline{$D, F$}.
+\end{itemize}
+Beide neuen Relationen besitzen nur noch FDs, deren Determinante ein Superschlüssel ist. Das Schema ist nun in BCNF.
+
+\textbf{Endergebnis Schema und Schlüsselkandidaten:}\\
+$\mathbf{R_1}(\underline{F}, E)$ -- Schlüsselkandidat: $F$ \\
+$\mathbf{R_2}(\underline{D, F})$ -- Schlüsselkandidat: $DF$
+
+\vspace{1cm}
+
+\exercise{5.3: Relationensynthese}
+
+Gegeben: $\mathbf{U}(A, B, C, D, E, F)$ und $\mathbf{X} = \{ABF \rightarrow CDE,\ AF \rightarrow C,\ BF \rightarrow D,\ D \rightarrow E\}$.
+
+\subsubsection*{Schritt 1: Rechtsreduktion}
+Wir spalten die rechten Seiten der FDs auf, sodass auf jeder rechten Seite nur noch ein einzelnes Attribut steht. Aus $ABF \rightarrow CDE$ wird $ABF \rightarrow C$, $ABF \rightarrow D$ und $ABF \rightarrow E$.
+\paragraph{Zwischenergebnis $X_1$:}
+$X_1 = \{ABF \rightarrow C,\ ABF \rightarrow D,\ ABF \rightarrow E,\ AF \rightarrow C,\ BF \rightarrow D,\ D \rightarrow E\}$
+
+\subsubsection*{Schritt 2: Linksreduktion}
+Wir prüfen für alle FDs, ob ein Attribut auf der linken Seite redundant ist, indem wir die Hülle der restlichen Attribute unter $X_1$ berechnen.
+\begin{itemize}
+    \item \textbf{Prüfe $ABF \rightarrow C$:}
+    \begin{itemize}
+        \item Ohne $B$: $(AF)^+_{X_1} = \{A, F\} \cup \{C\} = \{A, F, C\}$. Da $C \in (AF)^+$, ist $B$ redundant. \\
+        Die FD wird auf $AF \rightarrow C$ reduziert. (Da diese bereits existiert, verschmelzen sie).
+    \end{itemize}
+
+    \item \textbf{Prüfe $ABF \rightarrow D$:}
+    \begin{itemize}
+        \item Ohne $A$: $(BF)^+_{X_1} = \{B, F\} \cup \{D\} \cup \{E\} = \{B, F, D, E\}$. Da $D \in (BF)^+$, ist $A$ redundant. \\
+        Die FD wird auf $BF \rightarrow D$ reduziert. (Existiert ebenfalls bereits, verschmilzt).
+    \end{itemize}
+
+    \item \textbf{Prüfe $ABF \rightarrow E$:}
+    \begin{itemize}
+        \item Ohne $A$: $(BF)^+_{X_1} = \{B, F, D, E\}$. Da $E \in (BF)^+$, ist $A$ redundant. Die FD wird zu $BF \rightarrow E$.
+        \item Prüfe weiter $BF \rightarrow E$: Ohne $B$: $(F)^+ = \{F\} \not\ni E$. Ohne $F$: $(B)^+ = \{B\} \not\ni E$. Minimal.
+    \end{itemize}
+
+    \item Die FDs $AF \rightarrow C$, $BF \rightarrow D$ und $D \rightarrow E$ lassen sich nicht weiter linksreduzieren, da die Hüllen einzelner Attribute ($A^+, F^+, B^+, D^+$) die rechte Seite nicht hervorbringen.
+\end{itemize}
+\paragraph{Zwischenergebnis $X_2$ (Duplikate entfernt):}
+$X_2 = \{AF \rightarrow C,\ BF \rightarrow D,\ BF \rightarrow E,\ D \rightarrow E\}$
+
+\subsubsection*{Schritt 3: Entfernen redundanter funktionaler Abhängigkeiten}
+Wir prüfen, ob eine komplette FD durch die Hüllenberechnung der \textit{restlichen} FDs generiert werden kann.
+\begin{itemize}
+    \item Prüfe $AF \rightarrow C$: $(AF)^+_{X_2 \setminus \{AF \rightarrow C\}} = \{A, F\} \not\ni C$. (Bleibt erhalten)
+    \item Prüfe $BF \rightarrow D$: $(BF)^+_{X_2 \setminus \{BF \rightarrow D\}} = \{B, F\} \cup \{E\} = \{B, F, E\} \not\ni D$. (Bleibt erhalten)
+    \item Prüfe \textbf{$BF \rightarrow E$}: $(BF)^+_{X_2 \setminus \{BF \rightarrow E\}} = \{B, F\} \cup \{D\} \text{ (durch } BF \rightarrow D) \cup \{E\} \text{ (durch } D \rightarrow E) = \{B, F, D, \mathbf{E}\}$. \\
+    Da $E$ in der Hülle enthalten ist, ist $BF \rightarrow E$ \textbf{redundant} und wird entfernt!
+    \item Prüfe $D \rightarrow E$: $(D)^+_{X_2 \setminus \{D \rightarrow E\}} = \{D\} \not\ni E$. (Bleibt erhalten)
+\end{itemize}
+\paragraph{Zwischenergebnis $X_3$ (Kanonische Überdeckung):}
+$X_3 = \{AF \rightarrow C,\ BF \rightarrow D,\ D \rightarrow E\}$
+
+\subsubsection*{Schritt 4: Partitionierung}
+Wir fassen FDs mit identischer linker Seite zusammen (hier haben alle FDs bereits disjunkte linke Seiten) und bilden daraus die Relationen:
+\begin{itemize}
+    \item Aus $AF \rightarrow C \Rightarrow \mathbf{R_1}(A, F, C)$
+    \item Aus $BF \rightarrow D \Rightarrow \mathbf{R_2}(B, F, D)$
+    \item Aus $D \rightarrow E \Rightarrow \mathbf{R_3}(D, E)$
+\end{itemize}
+\paragraph{Zwischenergebnis nach Partitionierung:}
+$\mathbf{R_1}(A, C, F),\ \mathbf{R_2}(B, D, F),\ \mathbf{R_3}(D, E)$
+
+\subsubsection*{Schritt 5: Erstellen der minimalen Anzahl von Relationen \& Schlüsselkennzeichnung}
+Wir prüfen, ob eine der erstellten Relationen einen Schlüsselkandidaten der Universalrelation $\mathbf{U}$ enthält.
+\begin{itemize}
+    \item Ermittlung des Schlüsselkandidaten von $\mathbf{U}$ unter $X_3$: \\
+    Die Attribute $A, B$ und $F$ kommen auf keiner rechten Seite vor, müssen also zwingend im Schlüssel sein. \\
+    Hüllenberechnung: $(ABF)^+_{X_3} = \{A, B, F\} \cup \{C, D\} \cup \{E\} = \{A, B, C, D, E, F\} = \mathbf{U}$. \\
+    Somit ist \textbf{ABF der einzige Schlüsselkandidat} der Universalrelation.
+    \item Ist $ABF$ in $R_1, R_2$ oder $R_3$ enthalten? \textbf{Nein.}
+    \item Daher müssen wir eine zusätzliche Relation für den Schlüsselkandidaten anlegen: $\mathbf{R_4}(A, B, F)$.
+\end{itemize}
+
+\paragraph{Endergebnis (Relationen in 3NF mit gekennzeichneten Schlüsselkandidaten):}
+\begin{itemize}
+    \item $\mathbf{R_1}(\underline{A, F}, C)$
+    \item $\mathbf{R_2}(\underline{B, F}, D)$
+    \item $\mathbf{R_3}(\underline{D}, E)$
+    \item $\mathbf{R_4}(\underline{A, B, F})$
+\end{itemize}
+
+\exercise{5.4: Datenbankentwurfstheorie}
+
+\subsection*{a) Bedingungen für Schlüsselkandidaten und Bestimmung in $\mathbf{R}$}
+
+\textbf{Bedingungen für einen Schlüsselkandidaten:}
+Damit eine Attributmenge ein Schlüsselkandidat ist, müssen zwei Bedingungen erfüllt sein:
+\begin{enumerate}
+    \item \textbf{Eindeutigkeit:} Die Attributmenge muss alle Attribute der Relation funktional bestimmen (die Hülle der Attributmenge muss alle Attribute der Relation umfassen).
+    \item \textbf{Minimalität:} Keine echte Teilmenge dieses Schlüsselkandidaten darf die Eindeutigkeits-Bedingung bereits erfüllen.
+\end{enumerate}
+
+\textbf{Bestimmung des Schlüsselkandidaten von $\mathbf{R}(A, B, C, D, E, F, G, H)$:}
+Attribute, die auf \textit{keiner} rechten Seite der funktionalen Abhängigkeiten in $\mathbf{X}$ stehen, müssen zwingend Teil jedes Schlüsselkandidaten sein.
+\begin{itemize}
+    \item Attribute auf rechten Seiten: $G, D, A, C, E, H$.
+    \item Attribute nicht auf rechten Seiten: $B, F$.
+\end{itemize}
+Folglich müssen $B$ und $F$ im Schlüsselkandidaten enthalten sein. Wir berechnen die Hülle von $BF$:
+\begin{align*}
+    (BF)^+ &= \{B, F\} \\
+    &\cup \{A, C\} \quad \text{(wegen } BF \rightarrow AC) \\
+    &\cup \{D\} \quad \text{(wegen } B \rightarrow D) \\
+    &\cup \{G\} \quad \text{(wegen } A \rightarrow G \text{ oder } C \rightarrow A \text{ und dann } A \rightarrow G) \\
+    &\cup \{E, H\} \quad \text{(wegen } CG \rightarrow EH) \\
+    &= \{A, B, C, D, E, F, G, H\} = \mathbf{R}
+\end{align*}
+Die Menge $BF$ erfüllt die \textbf{Eindeutigkeit}.
+
+Wir prüfen die \textbf{Minimalität}, indem wir die Hüllen der echten Teilmengen ($B$ und $F$) berechnen:
+\begin{itemize}
+    \item $(B)^+ = \{B, D\} \neq \mathbf{R}$
+    \item $(F)^+ = \{F\} \neq \mathbf{R}$
+\end{itemize}
+Beide Teilmengen bestimmen nicht die gesamte Relation. Somit ist Minimalität gegeben. \\
+\textbf{Ergebnis:} $BF$ ist der (einzige) Schlüsselkandidat von $\mathbf{R}$.
+
+\vspace{0.5cm}
+
+\subsection*{b) Prüfung auf 2NF und Überführung}
+
+\textbf{Beweis der Verletzung der 2NF:}
+Ein Relationenschema befindet sich in 2NF, wenn es in 1NF ist und jedes Nicht-Primattribut (ein Attribut, das zu keinem Schlüsselkandidaten gehört) \textit{voll funktional} vom gesamten Schlüsselkandidaten abhängt. Es darf keine partiellen Abhängigkeiten geben.
+\begin{itemize}
+    \item Primattribute: $B, F$.
+    \item Nicht-Primattribute: $A, C, D, E, G, H$.
+    \item In der Menge $\mathbf{X}$ existiert die Abhängigkeit $B \rightarrow D$.
+\end{itemize}
+Das Nicht-Primattribut $D$ ist funktional von $B$ abhängig. Da $B$ eine echte Teilmenge des Schlüsselkandidaten $BF$ ist, liegt eine \textbf{partielle Abhängigkeit} vor. Somit befindet sich $\mathbf{R}$ \textbf{nicht in 2NF}.
+
+\textbf{Überführung in die 2NF:}
+Wir zerlegen die Relation, indem wir die partiellen Abhängigkeiten in eigene Relationen auslagern.
+\begin{itemize}
+    \item Wir lagern die partielle Abhängigkeit $B \rightarrow D$ aus. \\
+    $\Rightarrow \mathbf{R_1}(\underline{B}, D)$ mit Schlüsselkandidat $B$.
+    \item Die restlichen Attribute verbleiben zusammen mit dem vollen Schlüssel in der Ursprungsrelation. Die Hülle von $F$ liefert keine weiteren partiellen Abhängigkeiten. \\
+    $\Rightarrow \mathbf{R_2}(\underline{B, F}, A, C, E, G, H)$ mit Schlüsselkandidat $BF$.
+\end{itemize}
+
+\textbf{Begründung der Vorgehensweise:} Durch das Auslagern von $D$ in $\mathbf{R_1}$ wird die partielle Abhängigkeit eliminiert. In $\mathbf{R_2}$ sind nun alle verbleibenden Nicht-Primattribute voll funktional vom zusammengesetzten Schlüssel $BF$ abhängig. Es wurden keine unnötigen Relationen erzeugt, da genau ein Verstoß gegen die 2NF behoben wurde.
+
+\vspace{0.5cm}
+
+\subsection*{c) Prüfung auf 3NF und Überführung von $\mathbf{S}$}
+
+\textbf{Beweis der Verletzung der 3NF:}
+Ein Schema ist in 3NF, wenn es in 2NF ist und keine transitiven Abhängigkeiten von Nicht-Primattributen zum Schlüsselkandidaten existieren. Formal: Für jede nichttriviale Abhängigkeit $\alpha \rightarrow \beta$ muss $\alpha$ ein Superschlüssel sein ODER $\beta$ muss prim sein.
+\begin{itemize}
+    \item Schlüsselkandidat von $\mathbf{S}$: $DE$.
+    \item Primattribute: $D, E$.
+    \item Nicht-Primattribute: $A, B, C, F, G$.
+    \item Betrachte die FD $A \rightarrow B$: Die Determinante $A$ ist kein Superschlüssel ($(A)^+ = \{A, B\} \neq \mathbf{S}$) und $B$ ist kein Primattribut.
+    \item (Ebenso verletzt $G \rightarrow F$ die Bedingung).
+\end{itemize}
+Dies stellt eine \textbf{transitive Abhängigkeit} dar ($DE \rightarrow A \rightarrow B$). Somit befindet sich $\mathbf{S}$ \textbf{nicht in 3NF}.
+
+\textbf{Überführung in die 3NF:}
+Wir lagern die transitiv abhängigen Attribute anhand ihrer Determinanten aus.
+\begin{itemize}
+    \item Auslagerung der Abhängigkeit $A \rightarrow B$: \\
+    $\Rightarrow \mathbf{S_1}(\underline{A}, B)$ mit Schlüsselkandidat $A$.
+    \item Auslagerung der Abhängigkeit $G \rightarrow F$: \\
+    $\Rightarrow \mathbf{S_2}(\underline{G}, F)$ mit Schlüsselkandidat $G$.
+    \item Die Determinanten der transitiven Abhängigkeiten ($A$ und $G$) verbleiben als Fremdschlüssel in der Ursprungsrelation, zusammen mit den direkt vom Schlüssel $DE$ abhängigen Attributen ($C$ aus $DE \rightarrow CG$). \\
+    $\Rightarrow \mathbf{S_3}(\underline{D, E}, A, C, G)$ mit Schlüsselkandidat $DE$.
+\end{itemize}
+
+\textbf{Begründung der Vorgehensweise:}
+Durch die Auslagerung von $B$ und $F$ in $\mathbf{S_1}$ und $\mathbf{S_2}$ wurden die transitiven Abhängigkeiten entfernt. In der verbleibenden Relation $\mathbf{S_3}$ hängen $A, C$ und $G$ direkt vom Superschlüssel $DE$ ab, ohne weitere funktionale Abhängigkeiten untereinander aufzuweisen. Es wurden keine unnötigen Relationen erzeugt (synthetisches Zusammenfassen von $DE \rightarrow A$ und $DE \rightarrow CG$), und der ursprüngliche Schlüsselkandidat $DE$ ist in $\mathbf{S_3}$ erhalten geblieben, wodurch keine separate Schlüsselrelation nötig war.
+
+\end{document}
