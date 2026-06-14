@@ -1,0 +1,143 @@
+\documentclass[12pt]{scrartcl}
+
+\input{../styles/Packages}
+\input{../styles/FormatAndHeader}
+
+\usepackage{xcolor} % Für die Farben im Code
+
+% Definiere das Aussehen des Codes
+\lstset{
+    language=XML,
+    basicstyle=\ttfamily\small,
+    numbers=left,           % Zeilennummern links
+    stepnumber=1,
+    showstringspaces=false, % Keine komischen Unterstriche in Strings
+    tabsize=4,
+    breaklines=true,        % Automatischer Zeilenumbruch
+    breakatwhitespace=false,
+    frame=single,           % Ein Rahmen um den Code
+    extendedchars=true,
+    literate={ö}{{\"o}}1 {ä}{{\"a}}1 {ü}{{\"u}}1 {ß}{{\ss}}1 {Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1
+}
+
+% \stepcounter{countername}: Increases counter
+\setcounter{sheetnr}{6} % Number of sheet
+
+
+\setcounter{exnum}{1} % Exercise number
+
+\begin{document}
+
+    \exercise{6.1: Ebenen der Metamodellierung}
+
+\subsection*{Meta-Metamodell (M3)}
+\begin{itemize}
+    \item \textbf{Relationale Datenbankmodellbeschreibung}
+\end{itemize}
+\textbf{Begründung:} Das Meta-Metamodell stellt die abstrakteste Sprache und die grundlegendsten Konzepte zur Verfügung, um Metamodelle überhaupt erst beschreiben zu können. Die Beschreibung des relationalen Datenbankmodells definiert das relationale Paradigma an sich (z.\,B. die fundamentalen Konzepte "Relation", "Attribut", "Abhängigkeit") und bildet somit die oberste abstrakte Ebene der Architektur.
+
+\subsection*{Metamodell (M2)}
+\begin{itemize}
+    \item \textbf{3. Normalform (Definition)}
+    \item \textbf{Boyce-Codd-Normalform (Definition)}
+\end{itemize}
+\textbf{Begründung:} Das Metamodell definiert die Regeln, Eigenschaften und Einschränkungen für eine bestimmte Klasse von Modellen. Die Definitionen der Normalformen sind allgemeingültige, abstrakte Entwurfsregeln innerhalb des relationalen Paradigmas. Sie geben vor, wie konkrete Datenbankschemata (die Modelle) strukturiert sein müssen, um als logisch valide und anomaliefrei zu gelten.
+
+\subsection*{Modell (M1)}
+\begin{itemize}
+    \item \textbf{Datenbankschema}
+    \item \textbf{Liste von Spaltennamen}
+    \item \textbf{Liste von funktionalen Abhängigkeiten}
+    \item \textbf{(Vorname, Nachname, Institut, Abschluss)}
+\end{itemize}
+\textbf{Begründung:} Ein Modell beschreibt die exakte Struktur für einen ganz konkreten Anwendungsfall der realen Welt. Das \textbf{Datenbankschema} ist genau dieses Anwendungsmodell. Es wird strukturell durch eine konkrete \textbf{Liste von Spaltennamen} definiert und durch eine \textbf{Liste von funktionalen Abhängigkeiten} eingeschränkt. Die Signatur \textbf{(Vorname, Nachname, Institut, Abschluss)} ist dabei das konkrete Modell (die Schema-Definition) für eine einzelne, spezifische Tabelle in dieser Anwendung.
+
+\subsection*{Daten (M0)}
+\begin{itemize}
+    \item \textbf{(Laura, Schuiki, IPVS, M.Sc.)}
+\end{itemize}
+\textbf{Begründung:} Dies ist die Instanzebene. Das Tupel besteht aus konkreten Werten aus der realen Welt, die exakt der Struktur zugeordnet werden, die auf der Modellebene (M1) definiert wurde. Es handelt sich somit um eine tatsächliche Ausprägung (einen konkreten Datensatz) in der Datenbank.
+
+    \newpage
+
+    %TODO
+    \exercise{6.2}
+
+    \newpage
+
+
+    \exercise{6.3: XML-Grundlagen}
+
+\subsection*{a) Regeln für die Namensgebung von XML-Elementen}
+Für die Benennung von XML-Elementen gelten laut W3C-Standard grundlegend die folgenden vier Regeln:
+\begin{enumerate}
+    \item Namen dürfen Buchstaben, Zahlen und bestimmte andere Zeichen (wie Unterstriche oder Bindestriche) enthalten.
+    \item Namen dürfen \textbf{nicht} mit einer Zahl oder einem Satzzeichen beginnen.
+    \item Namen dürfen \textbf{nicht} mit der Zeichenfolge \texttt{xml} (oder \texttt{XML}, \texttt{Xml} etc.) beginnen.
+    \item Namen dürfen \textbf{keine} Leerzeichen enthalten.
+\end{enumerate}
+
+\subsection*{b) Multiple-Choice-Fragen mit Begründung}
+
+\paragraph*{i. In der 4-Ebenen-Architektur der Modellierung beschreibt das Metamodell direkt die unterste Ebene, also die konkreten Daten (Instanzen).}
+\textbf{Antwort: falsch} \\
+\textbf{Begründung:} Wie in der vorherigen Aufgabe zur Modellierungsarchitektur behandelt, beschreibt das Metamodell (Ebene M2) die Regeln für das \textit{Modell} (Ebene M1). Erst das Modell (M1, z.\,B. ein Datenbankschema) beschreibt direkt die unterste Ebene der konkreten Daten bzw. Instanzen (Ebene M0). Das Metamodell ist also zwei Abstraktionsebenen von den echten Daten entfernt.
+
+\paragraph*{ii. Ein XML-Dokument gilt dann als wohlgeformt (well-formed), wenn alle Start-Tags ein entsprechendes End-Tag besitzen.}
+\textbf{Antwort: falsch} \\
+\textbf{Begründung:} Das Vorhandensein korrespondierender Start- und End-Tags ist zwar eine notwendige, aber \textit{keine hinreichende} Bedingung für Wohlgeformtheit. Zusätzlich müssen noch weitere zwingende Regeln erfüllt sein: Ein wohlgeformtes XML-Dokument muss beispielsweise exakt \textit{ein} eindeutiges Wurzelelement (Root-Element) besitzen, die Elemente müssen korrekt verschachtelt sein (sich nicht überkreuzen) und Attributwerte müssen zwingend in Anführungszeichen stehen.
+
+\paragraph*{iii. Die Namespace-URI (z. B. http://mySite.com/Person) muss zwingend die physische Internetadresse sein, unter welcher die zugehörige XSD-Datei gespeichert ist.}
+\textbf{Antwort: falsch} \\
+\textbf{Begründung:} Eine Namespace-URI (Uniform Resource Identifier) dient in XML lediglich als global \textit{eindeutiger Zeichenstring (Bezeichner)}, um Namenskonflikte zwischen gleichnamigen Elementen aus verschiedenen XML-Vokabularen zu vermeiden. URLs werden dafür oft genutzt, weil Domains natürlicherweise eindeutig sind. Es ist jedoch technisch überhaupt nicht erforderlich, dass unter dieser Adresse tatsächlich eine Webseite oder eine physische Datei (wie ein XSD-Schema) im Internet abrufbar ist.
+\newpage
+    \exercise{6.4: XML-Fehlersuche}
+\begin{itemize}
+    \item \textbf{Zeile 7 -- Case Sensitivity (Groß-/Kleinschreibung):} \\
+    XML unterscheidet strikt zwischen Groß- und Kleinschreibung. Das Start-Tag \texttt{<Autor>} passt nicht zum End-Tag \texttt{</AuTor>}.
+
+    \item \textbf{Zeile 8 -- Leerzeichen in Elementnamen:} \\
+    XML-Elementnamen dürfen keine Leerzeichen enthalten. Das Tag \texttt{<Anzahl Seiten>} ist syntaktisch ungültig.
+
+    \item \textbf{Zeile 12 \& Zeile 22 -- Fehlende Anführungszeichen bei Attributwerten:} \\
+    Im Gegensatz zu HTML müssen in XML alle Attributwerte zwingend in einfache oder doppelte Anführungszeichen gesetzt werden.
+
+    \item \textbf{Zeile 16 -- Fehlender Slash im End-Tag:} \\
+    Ein schließendes Tag muss immer mit \texttt{</} beginnen. Am Ende der Zeile wurde fälschlicherweise wieder \texttt{<ISBN>} statt \texttt{</ISBN>} geschrieben.
+
+    \item \textbf{Zwischen Zeile 19 und 20 -- Fehlendes End-Tag:} \\
+    Die Hierarchie (Verschachtelung) ist verletzt. Das in Zeile 15 geöffnete Element \texttt{<BuchID>} wird für das zweite Buch niemals geschlossen.
+\end{itemize}
+
+\subsection*{Korrigiertes XML-Dokument}
+
+% Wichtig: Falls du das Paket listings nutzt, kannst du language=XML setzen
+\begin{lstlisting}[language=XML]
+<?xml version="1.0" encoding="UTF-8"?>
+<Bestellbestätigung>
+  <Buch>
+    <BuchID>
+      <ISBN>978-3-442-26822-1</ISBN>
+      <Titel>Der Thron der Sieben Königreiche</Titel>
+      <Autor>George R. R. Martin</Autor>
+      <AnzahlSeiten>575</AnzahlSeiten>
+    </BuchID>
+    <Verkäufer>Bookfans</Verkäufer>
+    <Preis einheit="Euro">15.0</Preis>
+    <Gewicht einheit="kg">0.8</Gewicht>
+  </Buch>
+  <Buch>
+    <BuchID>
+      <ISBN>978-3-404-209-7</ISBN>
+      <Titel>Eines Menschen Flügel</Titel>
+      <Autor>Andreas Eschbach</Autor>
+      <AnzahlSeiten>1263</AnzahlSeiten>
+    </BuchID>
+    <Verkäufer>Bookfans</Verkäufer>
+    <Preis einheit="Euro">14.9</Preis>
+    <Gewicht einheit="kg">0.75</Gewicht>
+  </Buch>
+</Bestellbestätigung>
+\end{lstlisting}
+
+\end{document}
