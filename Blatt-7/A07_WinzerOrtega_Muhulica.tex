@@ -1,0 +1,72 @@
+\documentclass[12pt]{scrartcl}
+
+\input{../styles/Packages}
+\input{../styles/FormatAndHeader}
+
+\usepackage{xcolor} % Für die Farben im Code
+
+% Definiere das Aussehen des Codes
+\lstset{
+    language=XML,
+    basicstyle=\ttfamily\small,
+    numbers=left,           % Zeilennummern links
+    stepnumber=1,
+    showstringspaces=false, % Keine komischen Unterstriche in Strings
+    tabsize=4,
+    breaklines=true,        % Automatischer Zeilenumbruch
+    breakatwhitespace=false,
+    frame=single,           % Ein Rahmen um den Code
+    extendedchars=true,
+    literate={ö}{{\"o}}1 {ä}{{\"a}}1 {ü}{{\"u}}1 {ß}{{\ss}}1 {Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1
+}
+
+% \stepcounter{countername}: Increases counter
+\setcounter{sheetnr}{7} % Number of sheet
+
+
+\setcounter{exnum}{1} % Exercise number
+
+\begin{document}
+
+    %TODO: Aufgabe 7.1
+
+
+    %TODO: Aufgabe 7.2
+
+
+    \exercise{7.3: XML-Instanz}
+
+% Hinweise zur Lösung:
+% 1. xs:date erfordert das Format YYYY-MM-DD.
+% 2. xs:sequence erzwingt die exakte Reihenfolge der Elemente (Eintrittsdatum MUSS vor Position stehen).
+% 3. Das "Gehalt" ist im XSD-Schema nicht definiert und muss weggelassen werden,
+%    da das Dokument sonst nicht gültig (valid) gegenüber dem Schema wäre.
+
+\begin{lstlisting}[language=XML]
+<?xml version="1.0" encoding="UTF-8"?>
+<Personalverwaltung>
+  <MitarbeiterInfo>
+    <PersonalID>MA-8821</PersonalID>
+    <Nachname>Mustermann</Nachname>
+    <Eintrittsdatum>2026-06-01</Eintrittsdatum>
+    <Position>Senior</Position>
+  </MitarbeiterInfo>
+
+  <MitarbeiterInfo>
+    <PersonalID>MA-1024</PersonalID>
+    <Nachname>Schmidt</Nachname>
+    <Eintrittsdatum>2026-01-15</Eintrittsdatum>
+    <Position>Manager</Position>
+  </MitarbeiterInfo>
+
+  <MitarbeiterInfo>
+    <PersonalID>MA-5566</PersonalID>
+    <Nachname>Weber</Nachname>
+    <Eintrittsdatum>2026-03-20</Eintrittsdatum>
+    <Position>Junior</Position>
+  </MitarbeiterInfo>
+</Personalverwaltung>
+\end{lstlisting}
+
+
+\end{document}
